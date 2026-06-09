@@ -1,0 +1,66 @@
+# Laravel-specific ignores
+/node_modules
+/public/hot
+/public/storage
+/public/build
+/vendor
+/.phpunit.cache
+.phpunit.result.cache
+
+# Security & Environment files (CRITICAL: Never commit credentials/keys)
+.env
+.env.*
+!.env.example
+/auth.json
+/storage/*.key
+/storage/pail
+/storage/oauth-*.key
+
+# Application storage & runtime files
+/storage/app/public/*
+!/storage/app/public/.gitignore
+/storage/framework/cache/data/*
+!/storage/framework/cache/data/.gitignore
+/storage/framework/sessions/*
+!/storage/framework/sessions/.gitignore
+/storage/framework/testing/*
+!/storage/framework/testing/.gitignore
+/storage/framework/views/*
+!/storage/framework/views/.gitignore
+/storage/logs/*
+!/storage/logs/.gitignore
+
+# Database backups/SQLite (CRITICAL: Avoid committing local db data or credentials)
+/*.sqlite
+/*.sqlite-journal
+/*.sqlite-shm
+/*.sqlite-wal
+/database/*.sqlite
+/database/*.sqlite-journal
+/database/*.sqlite-shm
+/database/*.sqlite-wal
+
+# IDE / Editor configurations
+.idea/
+.vscode/
+.fleet/
+.nova/
+.zed/
+.phpactor.json
+Homestead.json
+Homestead.yaml
+
+# System / OS-specific files
+.DS_Store
+Thumbs.db
+
+# Package Manager Log files
+npm-debug.log
+yarn-error.log
+pnpm-debug.log
+
+# AI Agent files
+task.md
+implementation_plan.md
+walkthrough.md
+
