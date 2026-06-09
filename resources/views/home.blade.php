@@ -5,7 +5,8 @@
     <!-- Hero Section -->
     <div class="p-5 mb-4 bg-light rounded-3 border">
         <div class="container-fluid py-5">
-            <h1 class="display-5 fw-bold">Welcome to Our Laravel App</h1>
+            <h6 class="display-5 fw-bold">Welcome to our app</h6>
+            <h1 class="display-5 fw-bold">HOME PAGE</h1>
             <p class="col-md-8 fs-4">This is a clean boilerplate using Laravel, Blade, and Bootstrap 5. It features a responsive layout, a sticky footer, and compiled assets via Vite.</p>
             <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#demoModal">
                 Launch Demo Modal
@@ -13,9 +14,9 @@
         </div>
     </div>
 
-    <!-- Features Section -->
+    Features Section
     <div class="row align-items-md-stretch mb-5">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-6 col-lg-4 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Modern Backend</h5>
@@ -24,7 +25,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-6 col-lg-4 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Clean Frontend</h5>
@@ -33,7 +34,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-6 col-lg-4 mb-4">
             <div class="card h-100 shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Bootstrap 5</h5>

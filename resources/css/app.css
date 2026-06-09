@@ -1,12 +1,526 @@
-@import 'tailwindcss';
+@import "../../node_modules/bootstrap/dist/css/bootstrap.css";
 
-@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
-@source '../../storage/framework/views/*.php';
-@source "../**/*.blade.php";
-@source "../**/*.js";
-@source "../**/*.vue";
+/* ---------------------------------------------------------
+   1. Visual Theme & Atmosphere / 2. Color Palette & Roles 
+--------------------------------------------------------- */
+:root {
+    /* Primary */
+    --bs-primary: #066FD1;
+    --bs-primary-rgb: 6, 111, 209;
 
-@theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    /* Semantic / Status */
+    --bs-success: #10B981;
+    --bs-success-rgb: 16, 185, 129;
+    --bs-warning: #EAB308;
+    --bs-warning-rgb: 234, 179, 8;
+    --bs-danger: #EF4444;
+    --bs-danger-rgb: 239, 68, 68;
+    --bs-info: #2563EB;
+    --bs-info-rgb: 37, 99, 235;
+
+    /* Interactive / Text */
+    --bs-body-color: #4E5967;
+    --bs-secondary-color: #6A7380;
+    --bs-border-color: #9BA3AF;
+    --bs-heading-color: #4E5967;
+
+    /* Backgrounds */
+    --bs-body-bg: #F8FAFC;
+
+    /* Typography */
+    --bs-font-sans-serif: 'Inter', -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
+    --bs-body-font-family: var(--bs-font-sans-serif);
+    --bs-body-font-size: 14px;
+    --bs-body-font-weight: 400;
+    --bs-body-line-height: 1.4285;
+    /* 20px / 14px */
+
+    /* Border Radius Scale */
+    --bs-border-radius: 6px;
+    --bs-border-radius-sm: 4px;
+    --bs-border-radius-lg: 12px;
+}
+
+/* ---------------------------------------------------------
+   3. Typography Rules 
+--------------------------------------------------------- */
+h1,
+.h1 {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 56px;
+    margin-bottom: 16px;
+}
+
+h2,
+.h2 {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    margin-bottom: 16px;
+}
+
+h3,
+.h3 {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    margin-bottom: 16px;
+}
+
+a {
+    color: var(--bs-primary);
+    font-weight: 400;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #0557B8;
+    text-decoration: underline;
+}
+
+/* ---------------------------------------------------------
+   4. Component Stylings 
+--------------------------------------------------------- */
+
+/* Primary Button */
+.btn-primary {
+    background-color: #066FD1;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 11px;
+    border-radius: 6px;
+    border: 1px solid rgba(1, 61, 209, 0.12);
+    height: 40px;
+    line-height: 14px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 15px -3px, rgba(0, 0, 0, 0.02) 0px 4px 6px -2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0557B8;
+    color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 15px -3px, rgba(0, 0, 0, 0.02) 0px 4px 6px -2px;
+}
+
+.btn-primary:active {
+    background-color: #0550a8;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 15px -3px;
+}
+
+.btn-primary:disabled,
+.btn-primary.disabled {
+    background-color: #066FD1;
+    opacity: 0.5;
+    box-shadow: none;
+}
+
+/* Secondary / Ghost Button */
+.btn-secondary,
+.btn-outline-primary {
+    background-color: #FFFFFF;
+    color: #4E5967;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 11px;
+    border-radius: 6px;
+    border: 1px solid rgba(1, 61, 209, 0.12);
+    height: 40px;
+    line-height: 14px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 15px -3px, rgba(0, 0, 0, 0.02) 0px 4px 6px -2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-secondary:hover,
+.btn-outline-primary:hover {
+    background-color: #F8FAFC;
+    color: #4E5967;
+    border-color: rgba(1, 61, 209, 0.2);
+}
+
+.btn-secondary:active,
+.btn-outline-primary:active {
+    background-color: #F1F3F8;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 15px -3px;
+}
+
+.btn-secondary:disabled,
+.btn-outline-primary:disabled {
+    color: #9BA3AF;
+    background-color: #FFFFFF;
+    opacity: 0.5;
+}
+
+/* Text-Only / Tertiary Button */
+.btn-link {
+    background-color: transparent;
+    color: #4E5967;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    height: 14px;
+    line-height: 14px;
+    box-shadow: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.btn-link:hover {
+    color: #066FD1;
+    text-decoration: underline;
+}
+
+.btn-link:active {
+    color: #0557B8;
+}
+
+.btn-link:disabled {
+    color: #9BA3AF;
+}
+
+/* Icon Button */
+.btn-icon {
+    background-color: transparent;
+    color: #4E5967;
+    font-size: 14px;
+    padding: 0;
+    border-radius: 0;
+    border: none;
+    height: 40px;
+    width: 40px;
+    box-shadow: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-icon:hover {
+    background-color: rgba(6, 111, 209, 0.1);
+    border-radius: 6px;
+    color: #066FD1;
+}
+
+.btn-icon:disabled {
+    opacity: 0.4;
+}
+
+/* Cards & Containers */
+.card {
+    background-color: #FFFFFF;
+    color: #4E5967;
+    font-size: 16px;
+    font-weight: 400;
+    padding: 32px;
+    border-radius: 12px;
+    border: 1px solid rgba(1, 61, 209, 0.12);
+    line-height: 27.43px;
+    box-shadow: rgba(0, 0, 0, 0.06) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+    transition: all 0.2s ease;
+}
+
+.card:hover {
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 20px 25px -5px, rgba(0, 0, 0, 0.06) 0px 10px 10px -5px;
+    border-color: rgba(1, 61, 209, 0.2);
+}
+
+.card.disabled {
+    opacity: 0.6;
+    background-color: #F8FAFC;
+}
+
+.card-featured {
+    border: 2px solid #066FD1;
+}
+
+.card-compact {
+    font-size: 14px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    border: 1px solid rgba(1, 61, 209, 0.08);
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 15px -3px, rgba(0, 0, 0, 0.02) 0px 4px 6px -2px;
+}
+
+/* Inputs & Forms */
+.form-control,
+.form-select {
+    background-color: #FFFFFF;
+    color: #4E5967;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: 1px solid rgba(1, 61, 209, 0.08);
+    height: 38px;
+    line-height: 21px;
+    box-shadow: none;
+    transition: all 0.2s ease;
+}
+
+.form-control::placeholder {
+    color: #9BA3AF;
+}
+
+.form-control:focus,
+.form-select:focus {
+    border-color: #066FD1;
+    box-shadow: 0 0 0 3px rgba(6, 111, 209, 0.1);
+    outline: none;
+}
+
+.form-control.is-invalid,
+.form-select.is-invalid {
+    border-color: #EF4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.form-control:disabled,
+.form-select:disabled {
+    background-color: #F8FAFC;
+    color: #9BA3AF;
+    border-color: #E0E3E8;
+}
+
+textarea.form-control {
+    min-height: 120px;
+    height: auto;
+    padding: 12px;
+    line-height: 20px;
+    resize: vertical;
+}
+
+/* Checkbox / Radio */
+.form-check-input {
+    width: 16px;
+    height: 16px;
+    border: 2px solid #9BA3AF;
+    background-color: #FFFFFF;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.form-check-input[type=radio] {
+    border-radius: 9999px;
+}
+
+.form-check-input:checked {
+    background-color: #066FD1;
+    border-color: #066FD1;
+}
+
+.form-check-input:hover:not(:disabled) {
+    border-color: #6A7380;
+}
+
+.form-check-input:disabled {
+    background-color: #F8FAFC;
+    border-color: #E0E3E8;
+    opacity: 0.5;
+}
+
+.form-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #4E5967;
+    margin-bottom: 8px;
+    display: block;
+}
+
+.form-text {
+    font-size: 12px;
+    font-weight: 400;
+    color: #9BA3AF;
+    margin-top: 4px;
+}
+
+/* Navigation */
+.navbar {
+    background-color: transparent;
+    height: 64px;
+    padding: 0 32px;
+    border-bottom: 1px solid #E0E3E8;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nav-link {
+    font-size: 16px;
+    font-weight: 400;
+    color: #4E5967;
+    padding: 8px 12px;
+    margin: 0 4px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+}
+
+.nav-link:hover {
+    background-color: rgba(6, 111, 209, 0.1);
+    color: #066FD1;
+}
+
+.nav-link.active {
+    background-color: #F8FAFC;
+    color: #066FD1;
+    border-bottom: 3px solid #066FD1;
+    border-radius: 6px 6px 0 0;
+}
+
+/* Breadcrumb */
+.breadcrumb-item+.breadcrumb-item::before {
+    content: "/";
+    color: #9BA3AF;
+}
+
+.breadcrumb-item {
+    font-size: 14px;
+    color: #4E5967;
+}
+
+.breadcrumb-item.active {
+    color: #066FD1;
+    font-weight: 500;
+}
+
+.breadcrumb-item a:hover {
+    text-decoration: underline;
+    color: #0557B8;
+}
+
+/* Badges & Status Indicators */
+.badge {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+.badge-success,
+.bg-success {
+    background-color: #D1FAE5 !important;
+    color: #047857 !important;
+    border: 1px solid #A7F3D0 !important;
+}
+
+.badge-warning,
+.bg-warning {
+    background-color: #FEF3C7 !important;
+    color: #92400E !important;
+    border: 1px solid #FCD34D !important;
+}
+
+.badge-danger,
+.bg-danger {
+    background-color: #FEE2E2 !important;
+    color: #991B1B !important;
+    border: 1px solid #FECACA !important;
+}
+
+.badge-info,
+.bg-info {
+    background-color: #DBEAFE !important;
+    color: #1E40AF !important;
+    border: 1px solid #93C5FD !important;
+}
+
+/* Dynamic Status Badges (Surat Keluar & Disposisi) */
+.status-badge {
+    font-size: 12px;
+    font-weight: 500;
+    padding: 4px 10px;
+    border-radius: 6px;
+    border: none;
+    display: inline-block;
+}
+
+.status-draft {
+    background-color: #F1F3F8 !important;
+    color: #4E5967 !important;
+}
+
+.status-menunggu_approval,
+.status-belum_disposisi,
+.status-belum_dibaca {
+    background-color: #FEF3C7 !important;
+    color: #D97706 !important;
+}
+
+.status-disetujui,
+.status-selesai {
+    background-color: #D1FAE5 !important;
+    color: #059669 !important;
+}
+
+.status-ditolak {
+    background-color: #FEE2E2 !important;
+    color: #DC2626 !important;
+}
+
+.status-terkirim,
+.status-sudah_disposisi,
+.status-dibaca {
+    background-color: #DBEAFE !important;
+    color: #2563EB !important;
+}
+
+/* Tables */
+.table th {
+    background-color: #F8FAFC;
+    color: #4E5967;
+    font-size: 12px;
+    font-weight: 600;
+    padding: 12px 16px;
+    border-bottom: 1px solid #E0E3E8;
+}
+
+.table td {
+    background-color: #FFFFFF;
+    color: #4E5967;
+    font-size: 14px;
+    font-weight: 400;
+    padding: 12px 16px;
+    border-bottom: 1px solid #F1F3F8;
+}
+
+.table-hover tbody tr:hover td {
+    background-color: #F8FAFC;
+}
+
+.table-striped tbody tr:nth-of-type(odd) td {
+    background-color: #F5F5FA;
+}
+
+/* Sidebar / Navigation Panel */
+.sidebar {
+    background-color: #1A2744;
+}
+
+.sidebar .nav-link {
+    color: #A8B5C8;
+}
+
+.sidebar .nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #FFFFFF;
+}
+
+.sidebar .nav-link.active {
+    color: #FFFFFF;
+    border-left: 3px solid #066FD1;
+    background-color: transparent;
+    border-bottom: none;
+    border-radius: 0;
 }
