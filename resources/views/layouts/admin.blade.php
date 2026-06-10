@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 
 @section('sidebar')
     <div class="sidebar-nav-label">Main</div>
@@ -10,10 +11,10 @@
             <rect x="14" y="14" width="7" height="7"></rect>
             <rect x="3" y="14" width="7" height="7"></rect>
         </svg>
-        Dashboard
+                Dashboard
     </a>
 
-    <div class="sidebar-nav-label">Letters</div>
+    <div class="sidebar-nav-label fw-bold">Letters</div>
 
     <a href="/admin/incoming-letters" class="sidebar-nav-item {{ request()->is('admin/incoming-letters') && !request()->is('admin/incoming-letters/create') ? 'active' : '' }}">
         <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

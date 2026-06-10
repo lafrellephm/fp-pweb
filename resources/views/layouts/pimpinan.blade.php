@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@vite(['resources/css/app.css', 'resources/js/app.js'])
 
 @section('sidebar')
     <div class="sidebar-nav-label">Menu</div>

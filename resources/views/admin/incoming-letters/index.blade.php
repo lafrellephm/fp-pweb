@@ -1,0 +1,123 @@
+@extends('layouts.admin')
+@vite(['resources/css/app.css', 'resources/js/app.js'])
+
+@section('page-title', 'Incoming Letters')
+
+@section('page-content')
+<div class="container-fluid">
+    <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
+        <div>
+            <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Incoming Letters</h2>
+            <p style="font-size: 14px; color: #6A7380; margin: 0;">Manage and track all incoming letters.</p>
+        </div>
+        <a href="{{ route('admin.incoming-letters.create') }}" class="btn btn-primary" style="height: 40px; border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">
+            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            Add Incoming Letter 
+        </a>
+    </div>
+
+    <!-- Search & Filter Bar -->
+    <div class="card mb-4" style="border-radius: 12px; padding: 24px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+        <form action="{{ route('admin.incoming-letters.index') }}" method="GET" class="row g-3 align-items-end">
+            <div class="col-md-4">
+                <label for="search" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Search Keyword</label>
+                <input type="text" name="search" id="search" class="form-control" style="height: 38px; border-radius: 6px;" placeholder="Letter number, sender, subject..." value="{{ request('search') }}">
+            </div>
+            <div class="col-md-3">
+                <label for="status" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Status</label>
+                <select name="status" id="status" class="form-select" style="height: 38px; border-radius: 6px;">
+                    <option value="">All Status</option>
+                    <option value="unassigned" {{ request('status') === 'unassigned' ? 'selected' : '' }}>Unassigned</option>
+                    <option value="assigned" {{ request('status') === 'assigned' ? 'selected' : '' }}>Assigned</option>
+                    <option value="completed" {{ request('status') === 'completed' ? 'selected' : '' }}>Completed</option>
+                </select>
+            </div>
+            <div class="col-md-3">
+                <label for="type" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Type</label>
+                <select name="type" id="type" class="form-select" style="height: 38px; border-radius: 6px;">
+                    <option value="">All Types</option>
+                    <option value="invitation" {{ request('type') === 'invitation' ? 'selected' : '' }}>Invitation</option>
+                    <option value="announcement" {{ request('type') === 'announcement' ? 'selected' : '' }}>Announcement</option>
+                </select>
+            </div>
+            <div class="col-md-2 d-flex">
+                <button type="submit" class="btn btn-secondary w-100 me-2" style="height: 38px; border-radius: 6px;">Filter</button>
+                @if(request()->hasAny(['search', 'status', 'type']))
+                    <a href="{{ route('admin.incoming-letters.index') }}" class="btn btn-outline-danger w-100" style="height: 38px; border-radius: 6px;">Reset</a>
+                @endif
+            </div>
+        </form>
+    </div>
+
+    <!-- Data Table -->
+    <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
+        <div class="table-responsive">
+            <table class="table table-vcenter table-nowrap mb-0">
+                <thead style="background-color: #F8FAFC;">
+                    <tr>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">No</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Letter Number</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Sender</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Subject</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Type</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Date Received</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;" class="w-1">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse($letters as $letter)
+                        <tr>
+                            <td class="text-muted">{{ $letters->firstItem() + $loop->index }}</td>
+                            <td style="font-weight: 500; color: #1A2744;">{{ $letter->letter_number }}</td>
+                            <td>{{ $letter->sender }}</td>
+                            <td>{{ Str::limit($letter->subject, 30) }}</td>
+                            <td>{{ ucfirst($letter->letter_type) }}</td>
+                            <td>{{ $letter->received_date->format('d M Y') }}</td>
+                            <td>
+                                @if($letter->status === 'unassigned')
+                                    <span class="badge" style="background-color: #FEF3C7; color: #D97706; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Unassigned</span>
+                                @elseif($letter->status === 'assigned')
+                                    <span class="badge" style="background-color: #DBEAFE; color: #2563EB; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Assigned</span>
+                                @elseif($letter->status === 'completed')
+                                    <span class="badge" style="background-color: #D1FAE5; color: #059669; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Completed</span>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="btn-list flex-nowrap">
+                                    <a href="{{ route('admin.incoming-letters.show', $letter->id) }}" class="btn btn-sm btn-outline-info" style="border-radius: 6px;">View</a>
+                                    <a href="{{ route('admin.incoming-letters.edit', $letter->id) }}" class="btn btn-sm btn-outline-primary" style="border-radius: 6px;">Edit</a>
+                                    <form action="{{ route('admin.incoming-letters.destroy', $letter->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this letter?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-sm btn-outline-danger" style="border-radius: 6px;">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="8" class="text-center py-5 text-muted">
+                                @if(request()->hasAny(['search', 'status', 'type']))
+                                    No incoming letters found matching your search.
+                                @else
+                                    No incoming letters found.
+                                @endif
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+        
+        @if($letters->hasPages())
+            <div class="card-footer d-flex align-items-center bg-white border-0 mt-2">
+                {{ $letters->links() }}
+            </div>
+        @endif
+    </div>
+</div>
+@endsection
