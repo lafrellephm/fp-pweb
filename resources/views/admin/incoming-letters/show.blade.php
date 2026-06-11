@@ -8,14 +8,14 @@
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
             <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Incoming Letter Detail</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">View complete details and track dispositions.</p>
+            <p style="font-size: 14px; color: #6A7380; margin: 0;">Lihat complete details and track dispositions.</p>
         </div>
         <a href="{{ route('admin.incoming-letters.index') }}" class="btn btn-outline-secondary" style="height: 40px; border-radius: 6px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
-            Back to Letters
+            Kembali ke Surat
         </a>
     </div>
 
@@ -27,7 +27,7 @@
     @endif
 
     <div class="row">
-        <!-- Letter Details -->
+        <!-- Detail Surat -->
         <div class="col-lg-8 mb-4">
             <div class="card h-100" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
                 <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
@@ -54,7 +54,7 @@
                         <div class="col-sm-8 text-dark">{{ $letter->sender }}</div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Subject</div>
+                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Perihal</div>
                         <div class="col-sm-8 text-dark">{{ $letter->subject }}</div>
                     </div>
                     <div class="row mb-4">
@@ -66,7 +66,7 @@
                         <div class="col-sm-8 text-dark">{{ $letter->letter_date->format('d F Y') }}</div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Received Date</div>
+                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Tanggal Diterima</div>
                         <div class="col-sm-8 text-dark">{{ $letter->received_date->format('d F Y') }}</div>
                     </div>
                     <div class="row mb-4">
@@ -85,7 +85,7 @@
                                         <line x1="16" y1="17" x2="8" y2="17"></line>
                                         <polyline points="10 9 9 9 8 9"></polyline>
                                     </svg>
-                                    View Attachment
+                                    Lihat Lampiran
                                 </a>
                             </div>
                         </div>
@@ -94,11 +94,11 @@
             </div>
         </div>
 
-        <!-- Status Update Form -->
+        <!-- Status Perbarui Form -->
         <div class="col-lg-4 mb-4">
             <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
                 <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
-                    <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Update Status</h3>
+                    <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Perbarui Status</h3>
                 </div>
                 <div class="card-body" style="padding: 24px;">
                     <form action="{{ route('admin.incoming-letters.status', $letter->id) }}" method="POST">
@@ -112,7 +112,7 @@
                                 <option value="completed" {{ $letter->status === 'completed' ? 'selected' : '' }}>Selesai</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100" style="height: 40px; border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">Update Status</button>
+                        <button type="submit" class="btn btn-primary w-100" style="height: 40px; border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">Perbarui Status</button>
                     </form>
                 </div>
             </div>
@@ -124,6 +124,12 @@
         <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
             <div class="d-flex align-items-center justify-content-between">
                 <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Disposisi</h3>
+                <a href="{{ route('admin.dispositions.create', ['incoming_letter_id' => $letter->id]) }}" class="btn btn-primary btn-sm" style="border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                    </svg>Buat Disposisi
+                </a>
             </div>
         </div>
         <div class="table-responsive">
@@ -133,7 +139,7 @@
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Assigned To</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Instructions</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
-                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Date</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Tanggal</th>
                     </tr>
                 </thead>
                 <tbody>

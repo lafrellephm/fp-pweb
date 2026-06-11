@@ -1,20 +1,20 @@
 @extends('layouts.user')
 
-@section('page-title', 'Edit Letter')
+@section('page-title', 'Ubah Surat')
 
 @section('page-content')
 <div class="container-fluid">
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
-            <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Edit Surat</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">Update the details of your draft letter.</p>
+            <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Ubah Surat</h2>
+            <p style="font-size: 14px; color: #6A7380; margin: 0;">Perbarui the details of your draft letter.</p>
         </div>
         <a href="{{ route('user.outgoing-letters.show', $letter->id) }}" class="btn btn-outline-secondary" style="height: 40px; border-radius: 6px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
-            Back to Detail
+            Kembali to Detail
         </a>
     </div>
 
@@ -24,7 +24,7 @@
                 @csrf
                 @method('PUT')
 
-                {{-- Section 1: Letter Type --}}
+                {{-- Section 1: Letter Jenis --}}
                 <div class="mb-4 pb-3" style="border-bottom: 1px solid #f1f3f8;">
                     <h3 style="font-size: 16px; font-weight: 600; color: #1A2744; margin-bottom: 16px;">Jenis Surat</h3>
                     <div class="mb-3">
@@ -88,7 +88,7 @@
                                         <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                         <polyline points="14 2 14 8 20 8"></polyline>
                                     </svg>
-                                    View Current Attachment
+                                    Lihat Current Lampiran
                                 </a>
                             </div>
                         @endif
@@ -128,7 +128,7 @@
                     </div>
                 </div>
 
-                {{-- Submit / Cancel --}}
+                {{-- Kirim / Batal --}}
                 <div class="d-flex justify-content-end pt-3">
                     <a href="{{ route('user.outgoing-letters.show', $letter->id) }}" class="btn btn-link text-muted me-3" style="text-decoration: none; height: 40px; border-radius: 6px;">Batal</a>
                     <button type="submit" class="btn btn-primary px-4" style="height: 40px; border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">Perbarui Surat</button>

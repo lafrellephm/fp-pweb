@@ -17,7 +17,7 @@
     --border-color: rgba(1, 61, 209, 0.12);
 
     /* Bootstrap-style variables */
-    --bs-primary: #066FD1;
+    --bs-primary: #1A2744;
     --bs-primary-rgb: 6, 111, 209;
     --bs-success: #10B981;
     --bs-success-rgb: 16, 185, 129;
@@ -42,7 +42,7 @@
     --bs-border-radius-lg: 12px;
 }
 
-.bg-primary-dark{
+.bg-primary-dark {
     --bs-bg-opacity: 1;
     background-color: var(--sidebar-bg) !important;
 }
@@ -69,21 +69,24 @@ a:hover {
     text-decoration: underline;
 }
 
-h1, .h1 {
+h1,
+.h1 {
     font-size: 48px;
     font-weight: 700;
     line-height: 56px;
     margin-bottom: 16px;
 }
 
-h2, .h2 {
+h2,
+.h2 {
     font-size: 32px;
     font-weight: 600;
     line-height: 28px;
     margin-bottom: 16px;
 }
 
-h3, .h3 {
+h3,
+.h3 {
     font-size: 24px;
     font-weight: 600;
     line-height: 24px;
@@ -101,25 +104,29 @@ h3, .h3 {
     border-radius: 6px;
 }
 
-.badge-danger, .bg-danger {
+.badge-danger,
+.bg-danger {
     background-color: #FEE2E2 !important;
     color: #991B1B !important;
     border: 1px solid #FECACA !important;
 }
 
-.badge-info, .bg-info {
+.badge-info,
+.bg-info {
     background-color: #DBEAFE !important;
     color: #1E40AF !important;
     border: 1px solid #93C5FD !important;
 }
 
-.badge-success, .bg-success {
+.badge-success,
+.bg-success {
     background-color: #D1FAE5 !important;
     color: #047857 !important;
     border: 1px solid #A7F3D0 !important;
 }
 
-.badge-warning, .bg-warning {
+.badge-warning,
+.bg-warning {
     background-color: #FEF3C7 !important;
     color: #92400E !important;
     border: 1px solid #FCD34D !important;
@@ -246,7 +253,8 @@ h3, .h3 {
     transition: all 0.2s ease;
 }
 
-.btn-primary.disabled, .btn-primary:disabled {
+.btn-primary.disabled,
+.btn-primary:disabled {
     background-color: #066FD1;
     opacity: 0.5;
     box-shadow: none;
@@ -263,7 +271,8 @@ h3, .h3 {
     box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 15px -3px, rgba(0, 0, 0, 0.02) 0px 4px 6px -2px;
 }
 
-.btn-secondary, .btn-outline-primary {
+.btn-secondary,
+.btn-outline-primary {
     background-color: #FFFFFF;
     color: #4E5967;
     font-size: 14px;
@@ -280,18 +289,21 @@ h3, .h3 {
     transition: all 0.2s ease;
 }
 
-.btn-secondary:active, .btn-outline-primary:active {
+.btn-secondary:active,
+.btn-outline-primary:active {
     background-color: #F1F3F8;
     box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 15px -3px;
 }
 
-.btn-secondary:disabled, .btn-outline-primary:disabled {
+.btn-secondary:disabled,
+.btn-outline-primary:disabled {
     color: #9BA3AF;
     background-color: #FFFFFF;
     opacity: 0.5;
 }
 
-.btn-secondary:hover, .btn-outline-primary:hover {
+.btn-secondary:hover,
+.btn-outline-primary:hover {
     background-color: #F8FAFC;
     color: #4E5967;
     border-color: rgba(1, 61, 209, 0.2);
@@ -365,7 +377,8 @@ h3, .h3 {
     border-radius: 9999px;
 }
 
-.form-control, .form-select {
+.form-control,
+.form-select {
     background-color: #FFFFFF;
     color: #4E5967;
     font-size: 14px;
@@ -379,7 +392,8 @@ h3, .h3 {
     transition: all 0.2s ease;
 }
 
-.form-control.is-invalid, .form-select.is-invalid {
+.form-control.is-invalid,
+.form-select.is-invalid {
     border-color: #EF4444;
     box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
 }
@@ -388,13 +402,15 @@ h3, .h3 {
     color: #9BA3AF;
 }
 
-.form-control:disabled, .form-select:disabled {
+.form-control:disabled,
+.form-select:disabled {
     background-color: #F8FAFC;
     color: #9BA3AF;
     border-color: #E0E3E8;
 }
 
-.form-control:focus, .form-select:focus {
+.form-control:focus,
+.form-select:focus {
     border-color: #066FD1;
     box-shadow: 0 0 0 3px rgba(6, 111, 209, 0.1);
     outline: none;
@@ -725,7 +741,8 @@ h3, .h3 {
     display: inline-block;
 }
 
-.status-disetujui, .status-selesai {
+.status-disetujui,
+.status-selesai {
     background-color: #D1FAE5 !important;
     color: #059669 !important;
 }
@@ -740,12 +757,16 @@ h3, .h3 {
     color: #4E5967 !important;
 }
 
-.status-menunggu_approval, .status-belum_disposisi, .status-belum_dibaca {
+.status-menunggu_approval,
+.status-belum_disposisi,
+.status-belum_dibaca {
     background-color: #FEF3C7 !important;
     color: #D97706 !important;
 }
 
-.status-terkirim, .status-sudah_disposisi, .status-dibaca {
+.status-terkirim,
+.status-sudah_disposisi,
+.status-dibaca {
     background-color: #DBEAFE !important;
     color: #2563EB !important;
 }

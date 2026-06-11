@@ -1,13 +1,13 @@
 @extends('layouts.user')
 
-@section('page-title', 'My Letters')
+@section('page-title', 'My Surat')
 
 @section('page-content')
 <div class="container-fluid">
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
             <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Surat Saya</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">View and manage all your submitted letters.</p>
+            <p style="font-size: 14px; color: #6A7380; margin: 0;">Lihat and manage all your submitted letters.</p>
         </div>
         <a href="{{ route('user.outgoing-letters.create') }}" class="btn btn-primary" style="height: 40px; border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
@@ -16,11 +16,11 @@
             </svg>Buat Surat Baru</a>
     </div>
 
-    {{-- Search & Filter Bar --}}
+    {{-- Cari & Filter Bar --}}
     <div class="card mb-4" style="border-radius: 12px; padding: 24px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
         <form action="{{ route('user.outgoing-letters.index') }}" method="GET" class="row g-3 align-items-end">
             <div class="col-md-3">
-                <label for="search" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Search Keyword</label>
+                <label for="search" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Cari Keyword</label>
                 <input type="text" name="search" id="search" class="form-control" style="height: 38px; border-radius: 6px;" placeholder="Purpose, name, recipient..." value="{{ request('search') }}">
             </div>
             <div class="col-md-3">
@@ -63,7 +63,7 @@
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Ditujukan Kepada</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Jenis</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
-                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Submitted Date</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Submitted Tanggal</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;" class="w-1">Aksi</th>
                     </tr>
                 </thead>
@@ -100,7 +100,7 @@
                                 <div class="btn-list flex-nowrap">
                                     <a href="{{ route('user.outgoing-letters.show', $letter->id) }}" class="btn btn-sm btn-outline-info" style="border-radius: 6px;">Lihat</a>
                                     @if($letter->status === 'draft')
-                                        <a href="{{ route('user.outgoing-letters.edit', $letter->id) }}" class="btn btn-sm btn-outline-primary" style="border-radius: 6px;">Edit</a>
+                                        <a href="{{ route('user.outgoing-letters.edit', $letter->id) }}" class="btn btn-sm btn-outline-primary" style="border-radius: 6px;">Ubah</a>
                                         <form action="{{ route('user.outgoing-letters.destroy', $letter->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus surat ini?');">
                                             @csrf
                                             @method('DELETE')

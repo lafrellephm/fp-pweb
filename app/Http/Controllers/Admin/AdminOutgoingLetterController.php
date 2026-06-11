@@ -63,7 +63,7 @@ class AdminOutgoingLetterController extends Controller
     }
 
     /**
-     * Process the letter: assign letter_number and letter_date, forward to pimpinan.
+     * Process the letter: assign letter_number and letter_date, forward for approval.
      */
     public function update(Request $request, string $id)
     {
@@ -117,5 +117,76 @@ class AdminOutgoingLetterController extends Controller
 
         return redirect()->route('admin.outgoing-letters.index')
                          ->with('success', 'Letter has been marked as sent and archived.');
+    }
+    /**
+     * Show the approval review page for a pending letter.
+     */
+    public function reviewApproval(string $id)
+    {
+        $letter = OutgoingLetter::with('submittedBy')->findOrFail($id);
+
+        if ($letter->status !== 'pending_approval') {
+            abort(403);
+        }
+
+        return view('admin.outgoing-letters.approve', compact('letter'));
+    }
+
+    /**
+     * Approve the letter.
+     */
+    public function approve(Request $request, string $id)
+    {
+        $letter = OutgoingLetter::findOrFail($id);
+
+        if ($letter->status !== 'pending_approval') {
+            abort(403);
+        }
+
+        $letter->update([
+            'status' => 'approved',
+            'approved_by' => auth()->id(),
+        ]);
+
+        Notification::create([
+            'user_id' => $letter->created_by,
+            'title'   => 'Surat Disetujui',
+            'message' => 'Surat Anda "' . $letter->purpose . '" telah disetujui oleh admin.',
+            'is_read' => false,
+        ]);
+
+        return redirect()->route('admin.outgoing-letters.show', $letter->id)
+                         ->with('success', 'Letter has been approved successfully.');
+    }
+
+    /**
+     * Reject the letter.
+     */
+    public function reject(Request $request, string $id)
+    {
+        $letter = OutgoingLetter::findOrFail($id);
+
+        if ($letter->status !== 'pending_approval') {
+            abort(403);
+        }
+
+        $validated = $request->validate([
+            'rejection_note' => 'required|string|max:1000',
+        ]);
+
+        $letter->update([
+            'status' => 'rejected',
+            'rejection_note' => $validated['rejection_note'],
+        ]);
+
+        Notification::create([
+            'user_id' => $letter->created_by,
+            'title'   => 'Surat Ditolak',
+            'message' => 'Surat Anda "' . $letter->purpose . '" telah ditolak dengan catatan: ' . $validated['rejection_note'],
+            'is_read' => false,
+        ]);
+
+        return redirect()->route('admin.outgoing-letters.show', $letter->id)
+                         ->with('success', 'Letter has been rejected.');
     }
 }

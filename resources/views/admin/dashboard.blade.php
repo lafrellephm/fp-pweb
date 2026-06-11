@@ -1,16 +1,16 @@
 @extends('layouts.admin')
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-@section('page-title', 'Admin Dashboard')
+@section('page-title', 'Admin Dasbor')
 
 @section('page-content')
-<div style="margin-bottom: 24px;">
+<div class="mb-3 pb-2">
     <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Dashboard admin</h2>
-    {{-- <p style="font-size: 14px; color: #6A7380; margin: 0;">Overview of all letters and dispositions.</p> --}}
+    <!-- {{-- <p style="font-size: 14px; color: #6A7380; margin: 0;">Overview of all letters and dispositions.</p> --}} -->
 </div>
 
 <div class="row g-3">
-    <!-- Card 1: Total Incoming Letters -->
+    <!-- Card 1: Total Surat Masuk -->
     <div class="col-12 col-md-6 col-xl-3">
         <div style="background: #FFFFFF; border-radius: 12px; padding: 24px; border: 1px solid rgba(1, 61, 209, 0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); height: 100%;">
             <div class="d-flex align-items-center">
@@ -23,14 +23,14 @@
                     </svg> --}}
                 </div>
                 <div>
-                    <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Total Incoming Letters</div>
+                    <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Total Surat Masuk</div>
                     <div style="font-size: 32px; font-weight: 700; color: #066FD1; margin-top: 4px;">{{ $totalIncoming }}</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Card 2: Pending Approval -->
+    <!-- Card 2: Menunggu Persetujuan -->
     <div class="col-12 col-md-6 col-xl-3">
         <div style="background: #FFFFFF; border-radius: 12px; padding: 24px; border: 1px solid rgba(1, 61, 209, 0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); height: 100%;">
             <div class="d-flex align-items-center">
@@ -65,14 +65,14 @@
                     </svg> --}}
                 </div>
                 <div>
-                    <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Active Dispositions</div>
+                    <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Menunggu Disposisi</div>
                     <div style="font-size: 32px; font-weight: 700; color: #2563EB; margin-top: 4px;">{{ $activeDisposition }}</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Card 4: Letters Sent -->
+    <!-- Card 4: Surat Sent -->
     <div class="col-12 col-md-6 col-xl-3">
         <div style="background: #FFFFFF; border-radius: 12px; padding: 24px; border: 1px solid rgba(1, 61, 209, 0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); height: 100%;">
             <div class="d-flex align-items-center">
@@ -84,7 +84,7 @@
                     </svg> --}}
                 </div>
                 <div>
-                    <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Letters Sent</div>
+                    <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Surat Keluar</div>
                     <div style="font-size: 32px; font-weight: 700; color: #059669; margin-top: 4px;">{{ $totalSent }}</div>
                 </div>
             </div>

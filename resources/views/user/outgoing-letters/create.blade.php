@@ -21,7 +21,7 @@
             <form action="{{ route('user.outgoing-letters.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                {{-- Section 1: Letter Type --}}
+                {{-- Section 1: Letter Jenis --}}
                 <div class="mb-4 pb-3" style="border-bottom: 1px solid #f1f3f8;">
                     <h3 style="font-size: 16px; font-weight: 600; color: #1A2744; margin-bottom: 16px;">Jenis Surat</h3>
                     <div class="mb-3">
@@ -114,7 +114,7 @@
                     </div>
                 </div>
 
-                {{-- Submit / Cancel --}}
+                {{-- Kirim / Batal --}}
                 <div class="d-flex justify-content-end pt-3">
                     <a href="{{ route('user.outgoing-letters.index') }}" class="btn btn-link text-muted me-3" style="text-decoration: none; height: 40px; border-radius: 6px;">Batal</a>
                     <button type="submit" class="btn btn-primary px-4" style="height: 40px; border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">Buat Surat</button>

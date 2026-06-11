@@ -7,7 +7,7 @@
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
             <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Letter Detail</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">View complete details of your submitted letter.</p>
+            <p style="font-size: 14px; color: #6A7380; margin: 0;">Lihat complete details of your submitted letter.</p>
         </div>
         <a href="{{ route('user.outgoing-letters.index') }}" class="btn btn-outline-secondary" style="height: 40px; border-radius: 6px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
@@ -129,7 +129,7 @@
                 <div class="col-sm-8 text-dark">{{ $letter->created_at->format('d F Y, H:i') }}</div>
             </div>
 
-            {{-- File Attachment --}}
+            {{-- File Lampiran --}}
             @if($letter->file_path)
                 <div class="row mt-4 pt-4" style="border-top: 1px solid #f1f3f8;">
                     <div class="col-12">
@@ -140,20 +140,20 @@
                                 <line x1="16" y1="13" x2="8" y2="13"></line>
                                 <line x1="16" y1="17" x2="8" y2="17"></line>
                             </svg>
-                            View Attachment
+                            Lihat Lampiran
                         </a>
                     </div>
                 </div>
             @endif
 
-            {{-- Action Buttons (only for drafts) --}}
+            {{-- Aksi Buttons (only for drafts) --}}
             @if($letter->status === 'draft')
                 <div class="d-flex gap-2 mt-4 pt-4" style="border-top: 1px solid #f1f3f8;">
                     <a href="{{ route('user.outgoing-letters.edit', $letter->id) }}" class="btn btn-primary" style="height: 40px; border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>Edit Surat</a>
+                        </svg>Ubah Surat</a>
                     <form action="{{ route('user.outgoing-letters.destroy', $letter->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus surat ini?');">
                         @csrf
                         @method('DELETE')
@@ -162,7 +162,7 @@
                                 <polyline points="3 6 5 6 21 6"></polyline>
                                 <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
                             </svg>
-                            Delete Letter
+                            Hapus Surat
                         </button>
                     </form>
                 </div>

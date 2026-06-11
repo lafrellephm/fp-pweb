@@ -2,7 +2,7 @@
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-@section('page-title', 'Incoming Letters')
+@section('page-title', 'Surat Masuk')
 
 @section('page-content')
 <div class="container-fluid">
@@ -18,11 +18,11 @@
             </svg>Tambah Surat Masuk</a>
     </div>
 
-    <!-- Search & Filter Bar -->
+    <!-- Cari & Filter Bar -->
     <div class="card mb-4" style="border-radius: 12px; padding: 24px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
         <form action="{{ route('admin.incoming-letters.index') }}" method="GET" class="row g-3 align-items-end">
             <div class="col-md-4">
-                <label for="search" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Search Keyword</label>
+                <label for="search" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Cari Keyword</label>
                 <input type="text" name="search" id="search" class="form-control" style="height: 38px; border-radius: 6px;" placeholder="Letter number, sender, subject..." value="{{ request('search') }}">
             </div>
             <div class="col-md-3">
@@ -38,8 +38,8 @@
                 <label for="type" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Jenis</label>
                 <select name="type" id="type" class="form-select" style="height: 38px; border-radius: 6px;">
                     <option value="">All Types</option>
-                    <option value="invitation" {{ request('type') === 'invitation' ? 'selected' : '' }}>Undangan</option>
-                    <option value="announcement" {{ request('type') === 'announcement' ? 'selected' : '' }}>Announcement</option>
+                    <option value="undangan" {{ request('type') === 'undangan' ? 'selected' : '' }}>Undangan</option>
+                    <option value="pengumuman" {{ request('type') === 'pengumuman' ? 'selected' : '' }}>Pengumuman</option>
                 </select>
             </div>
             <div class="col-md-2 d-flex">
@@ -60,7 +60,7 @@
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">No</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Nomor Surat</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Pengirim</th>
-                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Subject</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Perihal</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Jenis</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Tanggal Diterima</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
@@ -88,7 +88,7 @@
                             <td>
                                 <div class="btn-list flex-nowrap">
                                     <a href="{{ route('admin.incoming-letters.show', $letter->id) }}" class="btn btn-sm btn-outline-info" style="border-radius: 6px;">Lihat</a>
-                                    <a href="{{ route('admin.incoming-letters.edit', $letter->id) }}" class="btn btn-sm btn-outline-primary" style="border-radius: 6px;">Edit</a>
+                                    <a href="{{ route('admin.incoming-letters.edit', $letter->id) }}" class="btn btn-sm btn-outline-primary" style="border-radius: 6px;">Ubah</a>
                                     <form action="{{ route('admin.incoming-letters.destroy', $letter->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus surat ini?');">
                                         @csrf
                                         @method('DELETE')

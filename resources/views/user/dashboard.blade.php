@@ -1,6 +1,6 @@
 @extends('layouts.user')
 
-@section('page-title', 'My Dashboard')
+@section('page-title', 'My Dasbor')
 
 @section('page-content')
 <div class="container-fluid">
@@ -49,7 +49,7 @@
             </div>
         </div>
 
-        {{-- Card 3: Pending Approval --}}
+        {{-- Card 3: Menunggu Persetujuan --}}
         <div class="col-12 col-md-6 col-xl-3">
             <div style="background: #FFFFFF; border-radius: 12px; padding: 24px; border: 1px solid rgba(1, 61, 209, 0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); height: 100%;">
                 <div class="d-flex align-items-center">
@@ -85,7 +85,7 @@
         </div>
     </div>
 
-    {{-- Recent Letters Section --}}
+    {{-- Recent Surat Section --}}
     <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
         <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
             <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Surat Terbaru</h3>

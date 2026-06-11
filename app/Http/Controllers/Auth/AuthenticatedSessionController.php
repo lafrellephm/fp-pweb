@@ -30,7 +30,6 @@ class AuthenticatedSessionController extends Controller
 
         return match (auth()->user()->role) {
             'admin'    => redirect('/admin/dashboard'),
-            'pimpinan' => redirect('/pimpinan/dashboard'),
             default    => redirect('/user/dashboard'),
         };
     }

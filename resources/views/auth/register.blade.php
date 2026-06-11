@@ -12,7 +12,7 @@
     <form method="POST" action="{{ route('register') }}" class="border mx-auto my-auto ">
         @csrf
 
-        <!-- Name -->
+        <!-- Nama -->
         <div class="">
             <label for="name">{{ __('Nama') }}
             </label>
@@ -31,7 +31,7 @@
             @enderror
         </div>
 
-        <!-- Password -->
+        <!-- Kata Sandi -->
         <div>
             <label for="password">{{ __('Kata Sandi') }}</label>
             <input id="password" type="password" name="password" required autocomplete="new-password">
@@ -40,7 +40,7 @@
             @enderror
         </div>      
 
-        <!-- Confirm Password -->
+        <!-- Konfirmasi Kata Sandi -->
         <div>
             <label for="password_confirmation">{{ __('Konfirmasi Kata Sandi') }}</label>
             <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password">

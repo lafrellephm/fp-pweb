@@ -11,7 +11,7 @@
     <form method="POST" action="{{ route('password.store') }}">
         @csrf
 
-        <!-- Password Reset Token -->
+        <!-- Kata Sandi Reset Token -->
         <input type="hidden" name="token" value="{{ $request->route('token') }}">
 
         <!-- Email Address -->
@@ -23,7 +23,7 @@
             @enderror
         </div>
 
-        <!-- Password -->
+        <!-- Kata Sandi -->
         <div>
             <label for="password">{{ __('Kata Sandi') }}</label>
             <input id="password" type="password" name="password" required autocomplete="new-password">
@@ -32,7 +32,7 @@
             @enderror
         </div>
 
-        <!-- Confirm Password -->
+        <!-- Konfirmasi Kata Sandi -->
         <div>
             <label for="password_confirmation">{{ __('Konfirmasi Kata Sandi') }}</label>
             <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password">

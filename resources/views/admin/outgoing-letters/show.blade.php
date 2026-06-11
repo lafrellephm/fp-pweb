@@ -9,14 +9,14 @@
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
             <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Outgoing Letter Detail</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">View complete details of this outgoing letter submission.</p>
+            <p style="font-size: 14px; color: #6A7380; margin: 0;">Lihat complete details of this outgoing letter submission.</p>
         </div>
         <a href="{{ route('admin.outgoing-letters.index') }}" class="btn btn-outline-secondary" style="height: 40px; border-radius: 6px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
             </svg>
-            Back to Letters
+            Kembali ke Surat
         </a>
     </div>
 
@@ -45,7 +45,7 @@
     @endif
 
     <div class="row">
-        <!-- Letter Details -->
+        <!-- Detail Surat -->
         <div class="col-lg-8 mb-4">
             <div class="card h-100" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
                 <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Related Name</div>
+                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Related Nama</div>
                         <div class="col-sm-8 text-dark">{{ $letter->related_name }}</div>
                     </div>
                     <div class="row mb-4">
@@ -160,7 +160,7 @@
                                         <line x1="16" y1="17" x2="8" y2="17"></line>
                                         <polyline points="10 9 9 9 8 9"></polyline>
                                     </svg>
-                                    View Attachment
+                                    Lihat Lampiran
                                 </a>
                             </div>
                         </div>
@@ -169,7 +169,7 @@
             </div>
         </div>
 
-        <!-- Actions Panel -->
+        <!-- Aksi Panel -->
         <div class="col-lg-4 mb-4">
             <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
                 <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
@@ -182,7 +182,7 @@
                                 <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                                 <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                             </svg>
-                            Process This Letter
+                            Proses This Letter
                         </a>
                     @endif
 
@@ -202,7 +202,7 @@
                                 <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                                 <rect x="6" y="14" width="12" height="8"></rect>
                             </svg>
-                            Print Letter
+                            Cetak Letter
                         </a>
                     @endif
 
@@ -213,7 +213,7 @@
                                 <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                                 <rect x="6" y="14" width="12" height="8"></rect>
                             </svg>
-                            Print Letter
+                            Cetak Letter
                         </a>
                     @endif
 

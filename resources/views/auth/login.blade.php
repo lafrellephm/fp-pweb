@@ -32,7 +32,7 @@
                     @enderror
                 </div>
         
-                <!-- Password -->
+                <!-- Kata Sandi -->
                 <div class="mb-3">
                     <label for="password" class="form-lable">{{ __('Kata Sandi') }}</label>
                     <input id="password" type="password" class="form-control" name="password" required autocomplete="current-password">

@@ -5,6 +5,7 @@
 **Date:** June 2026  
 **Project:** Final Project — Pemrograman Web (PWEB)  
 **Tech Stack:** Laravel, Bootstrap 5, Tabler UI  
+**Language** Indonesian (all text should be in indonesian)
 
 ---
 
@@ -21,7 +22,7 @@ Organisasi PWEB currently manages incoming and outgoing correspondence manually,
 - Produce printable letter documents from pre-built templates
 
 ### 1.3 Scope
-This system covers three primary actors: **User** (general member), **Admin** (secretary), and **Pimpinan** (leadership). The system handles two letter directions: **Surat Masuk** (incoming) and **Surat Keluar** (outgoing), along with disposition management.
+This system covers three primary actors: **User** (general member), **Admin** (secretary). The system handles two letter directions: **Surat Masuk** (incoming) and **Surat Keluar** (outgoing), along with disposition management.
 
 ---
 
@@ -33,26 +34,26 @@ This system covers three primary actors: **User** (general member), **Admin** (s
 |---|---|---|
 | **User** | General organization member. Submits letter requests and tracks their own letter status. | Self-register via public registration page |
 | **Admin** | Organization secretary. Manages all letters, dispositions, and system operations. | Created via database seeder only |
-| **Pimpinan** | Organization leadership. Reviews and approves outgoing letters. | Created via database seeder only |
+
 
 ### 2.2 Role Access Matrix
 
-| Feature | User | Admin | Pimpinan |
+| Feature | User | Admin |  
 |---|---|---|---|
-| Register & Login | ✅ | ✅ | ✅ |
-| Submit draft surat keluar | ✅ | ❌ | ❌ |
-| Edit own draft (status = draft only) | ✅ | ❌ | ❌ |
-| Delete own draft (status = draft only) | ✅ | ❌ | ❌ |
-| View own letter status | ✅ | ❌ | ❌ |
-| View own disposisi | ✅ | ❌ | ❌ |
-| Update disposisi status | ✅ | ❌ | ❌ |
-| Input surat masuk | ❌ | ✅ | ❌ |
-| Process & number surat keluar | ❌ | ✅ | ❌ |
-| Create & manage disposisi | ❌ | ✅ | ❌ |
-| View all letters & archive | ❌ | ✅ | ❌ |
-| Generate & print letter | ❌ | ✅ | ❌ |
-| View pending approval letters | ❌ | ❌ | ✅ |
-| Approve / reject surat keluar | ❌ | ❌ | ✅ |
+| Register & Login | ✅ | ✅ | 
+| Submit draft surat keluar | ✅ | ❌ | 
+| Edit own draft (status = draft only) | ✅ | ❌ | 
+| Delete own draft (status = draft only) | ✅ | ❌ | 
+| View own letter status | ✅ | ❌ | 
+| View own disposisi | ✅ | ❌ | 
+| Update disposisi status | ✅ | ❌ | 
+| Input surat masuk | ❌ | ✅ | 
+| Process & number surat keluar | ❌ | ✅ | 
+| Create & manage disposisi | ❌ | ✅ | 
+| View all letters & archive | ❌ | ✅ | 
+| Generate & print letter | ❌ | ✅ | 
+| View pending approval letters | ❌ | ✅ |
+| Approve / reject surat keluar | ❌ | ✅ | 
 
 ---
 
@@ -64,8 +65,8 @@ This system covers three primary actors: **User** (general member), **Admin** (s
 |---|---|
 | AUTH-01 | Single login page for all roles with automatic redirect based on role after successful login |
 | AUTH-02 | Self-registration is available only for the `user` role; role is hardcoded to `user` on registration |
-| AUTH-03 | Admin and Pimpinan accounts are created exclusively via database seeder |
-| AUTH-04 | After login: `user` → `/user/dashboard`, `admin` → `/admin/dashboard`, `pimpinan` → `/pimpinan/dashboard` |
+| AUTH-03 | Admin accounts are created exclusively via database seeder |
+| AUTH-04 | After login: `user` → `/user/dashboard`, `admin` → `/admin/dashboard` |
 | AUTH-05 | Logout available from navbar for all roles |
 | AUTH-06 | Unauthenticated users are redirected to the login page via middleware |
 | AUTH-07 | Role-based middleware protects all routes; accessing unauthorized routes redirects to respective dashboard |
@@ -100,9 +101,9 @@ This system covers three primary actors: **User** (general member), **Admin** (s
 |---|---|
 | ADM-06 | Admin can view all incoming surat keluar drafts from users in a paginated table |
 | ADM-07 | Admin can assign an official letter number (`nomor_surat`) and `tanggal_surat` to a draft |
-| ADM-08 | Admin forwards the letter to Pimpinan by changing status to `menunggu_approval` |
-| ADM-09 | After Pimpinan approves, Admin marks the letter as `terkirim` after sending |
-| ADM-10 | If Pimpinan rejects, Admin can view the rejection note; status reverts to `draft` for user to revise |
+| ADM-08 | Admin forwards the letter by changing status to `menunggu_approval` |
+| ADM-09 | After admin approves, Admin marks the letter as `terkirim` after sending |
+| ADM-10 | If admin rejects, Admin can view the rejection note; status reverts to `draft` for user to revise |
 | ADM-11 | Admin can generate and print a letter using a pre-built Blade template via `window.print()` |
 
 ### 3.5 Admin — Disposisi
@@ -114,21 +115,21 @@ This system covers three primary actors: **User** (general member), **Admin** (s
 | ADM-14 | Admin can view all dispositions and their current status |
 | ADM-15 | Admin can delete a disposition if it was incorrectly directed |
 
-### 3.6 Pimpinan — Approval
+### 3.6 Admin — Approval
 
 | ID | Requirement |
 |---|---|
-| PIM-01 | Pimpinan can view a list of surat keluar with status `menunggu_approval` |
-| PIM-02 | Pimpinan can approve a letter, changing status to `disetujui` |
-| PIM-03 | Pimpinan can reject a letter with a mandatory rejection note (`catatan_tolak`), changing status to `ditolak` |
-| PIM-04 | Pimpinan receives an in-app notification when a new letter is awaiting approval |
+| PIM-01 | Admin can view a list of surat keluar with status `menunggu_approval` |
+| PIM-02 | Admin can approve a letter, changing status to `disetujui` |
+| PIM-03 | Admin can reject a letter with a mandatory rejection note (`catatan_tolak`), changing status to `ditolak` |
+| PIM-04 | Admin receives an in-app notification when a new letter is awaiting approval |
 
 ### 3.7 Letter Templates & Print
 
 | ID | Requirement |
 |---|---|
 | TPL-01 | Three separate Blade templates for: Surat Rekomendasi, Surat Keterangan Aktif, Surat Tugas |
-| TPL-02 | Each template auto-populates: organization letterhead (Organisasi PWEB), `nomor_surat`, `tanggal_surat`, recipient, body content from DB fields, and Pimpinan name as signatory |
+| TPL-02 | Each template auto-populates: organization letterhead (Organisasi PWEB), `nomor_surat`, `tanggal_surat`, recipient, body content from DB fields, and admin name as signatory |
 | TPL-03 | Print is triggered via `window.print()`; print button is hidden in `@media print` CSS |
 | TPL-04 | Template selection is automatic based on `jenis_surat` field using a `match()` expression |
 
@@ -162,7 +163,7 @@ The following 8 dynamic features are implemented in this system, satisfying the 
 | `name` | varchar(100) | Full name |
 | `email` | varchar(100) | Unique |
 | `password` | varchar | Hashed via bcrypt |
-| `role` | enum | `user`, `admin`, `pimpinan` |
+| `role` | enum | `user`, `admin` |
 | `created_at` | timestamp | Auto Laravel |
 | `updated_at` | timestamp | Auto Laravel |
 
@@ -198,9 +199,9 @@ The following 8 dynamic features are implemented in this system, satisfying the 
 | `lokasi_kegiatan` | varchar(100) | For surat tugas only, nullable |
 | `file_surat` | varchar | Attachment file path, nullable |
 | `status` | enum | `draft`, `menunggu_approval`, `disetujui`, `ditolak`, `terkirim` |
-| `catatan_tolak` | text | Rejection note from Pimpinan, nullable |
+| `catatan_tolak` | text | Rejection note from admin, nullable |
 | `created_by` | bigint FK | User who submitted the draft |
-| `approved_by` | bigint FK | Pimpinan who approved, nullable |
+| `approved_by` | bigint FK | admin who approved, nullable |
 | `created_at` | timestamp | Auto Laravel |
 | `updated_at` | timestamp | Auto Laravel |
 
@@ -280,12 +281,6 @@ belum_dibaca → dibaca → selesai
 └── Users                 (view-only user list)
 ```
 
-### Pimpinan Sidebar
-```
-├── Dashboard             (pending approvals summary)
-└── Letter Approval       (letters awaiting signature)
-```
-
 ### Navbar (all roles)
 ```
 Right side: Notification bell (with unread count badge) | Username | Logout
@@ -312,7 +307,7 @@ The following are explicitly excluded from this project:
 
 - Email notifications (in-app notifications only)
 - Forgot password / email verification
-- Admin UI for creating new admin or pimpinan accounts (seeder only)
+- Admin UI for creating new admin (seeder only)
 - Export to PDF via package (print via browser only)
 - Real-time updates (no WebSocket or polling)
 - Multi-level disposition chains
@@ -333,11 +328,5 @@ The following accounts will be created via `DatabaseSeeder.php`:
     'role'     => 'admin',
 ]
 
-// Pimpinan account
-[
-    'name'     => 'Ketua',
-    'email'    => 'Ketua@organisasipweb.com',
-    'password' => bcrypt('Ketua'),
-    'role'     => 'pimpinan',
-]
+
 ```

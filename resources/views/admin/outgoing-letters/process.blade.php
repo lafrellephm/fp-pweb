@@ -2,7 +2,7 @@
 
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 
-@section('page-title', 'Process Letter')
+@section('page-title', 'Proses Letter')
 
 @section('page-content')
 <div class="container-fluid">
@@ -72,7 +72,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="mb-3">
-                        <div style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Related Name</div>
+                        <div style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px;">Related Nama</div>
                         <div style="font-size: 14px; color: #4E5967;">{{ $letter->related_name }}</div>
                     </div>
                     <div class="mb-3">
@@ -103,7 +103,7 @@
                     <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                     <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
                 </svg>
-                <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Assign Letter Details</h3>
+                <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Assign Detail Surat</h3>
             </div>
         </div>
         <div class="card-body" style="padding: 24px;">
@@ -113,7 +113,7 @@
 
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label for="letter_number" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Assign Letter Number <span style="color: #EF4444;">*</span></label>
+                        <label for="letter_number" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Assign Nomor Surat <span style="color: #EF4444;">*</span></label>
                         <input type="text" name="letter_number" id="letter_number" class="form-control @error('letter_number') is-invalid @enderror" style="height: 38px; border-radius: 6px;" placeholder="e.g. 001/ORG-PWEB/VI/2026" value="{{ old('letter_number') }}" required>
                         @error('letter_number')
                             <div class="invalid-feedback">{{ $message }}</div>

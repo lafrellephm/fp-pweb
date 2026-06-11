@@ -2,15 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdminDispositionController;
 use App\Http\Controllers\Admin\AdminIncomingLetterController;
 use App\Http\Controllers\Admin\AdminOutgoingLetterController;
 use App\Http\Controllers\User\UserDashboardController;
+use App\Http\Controllers\User\UserDispositionController;
 use App\Http\Controllers\User\UserOutgoingLetterController;
 Route::get('/', function () {
     if (auth()->check()) {
         return match (auth()->user()->role) {
             'admin'    => redirect('/admin/dashboard'),
-            'pimpinan' => redirect('/pimpinan/dashboard'),
             default    => redirect('/user/dashboard'),
         };
     }
@@ -24,6 +25,10 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
         Route::resource('/outgoing-letters', UserOutgoingLetterController::class)
              ->parameters(['outgoing-letters' => 'id']);
+
+        // Dispositions
+        Route::get('/dispositions', [UserDispositionController::class, 'index'])->name('dispositions.index');
+        Route::patch('/dispositions/{id}/status', [UserDispositionController::class, 'updateStatus'])->name('dispositions.status');
     });
 
     // Admin routes
@@ -37,14 +42,16 @@ Route::middleware('auth')->group(function () {
         Route::get('/outgoing-letters/{id}', [AdminOutgoingLetterController::class, 'show'])->name('outgoing-letters.show');
         Route::get('/outgoing-letters/{id}/process', [AdminOutgoingLetterController::class, 'edit'])->name('outgoing-letters.process');
         Route::put('/outgoing-letters/{id}/process', [AdminOutgoingLetterController::class, 'update'])->name('outgoing-letters.update');
+        Route::get('/outgoing-letters/{id}/approve', [AdminOutgoingLetterController::class, 'reviewApproval'])->name('outgoing-letters.review');
+        Route::patch('/outgoing-letters/{id}/approve', [AdminOutgoingLetterController::class, 'approve'])->name('outgoing-letters.approve');
+        Route::patch('/outgoing-letters/{id}/reject', [AdminOutgoingLetterController::class, 'reject'])->name('outgoing-letters.reject');
         Route::patch('/outgoing-letters/{id}/sent', [AdminOutgoingLetterController::class, 'markSent'])->name('outgoing-letters.sent');
-    });
 
-    // Pimpinan routes
-    Route::middleware('role:pimpinan')->prefix('pimpinan')->name('pimpinan.')->group(function () {
-        Route::get('/dashboard', function () {
-            return view('pimpinan.dashboard');
-        })->name('dashboard');
+        // Dispositions
+        Route::get('/dispositions', [AdminDispositionController::class, 'index'])->name('dispositions.index');
+        Route::get('/dispositions/create', [AdminDispositionController::class, 'create'])->name('dispositions.create');
+        Route::post('/dispositions', [AdminDispositionController::class, 'store'])->name('dispositions.store');
+        Route::delete('/dispositions/{id}', [AdminDispositionController::class, 'destroy'])->name('dispositions.destroy');
     });
 });
 

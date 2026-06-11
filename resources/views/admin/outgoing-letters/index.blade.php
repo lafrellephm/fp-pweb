@@ -52,12 +52,12 @@
     <div class="tab-content" id="outgoingLetterTabContent">
         <!-- Submissions Tab -->
         <div class="tab-pane fade show active" id="submissions-pane" role="tabpanel" aria-labelledby="submissions-tab">
-            <!-- Search & Filter Bar -->
+            <!-- Cari & Filter Bar -->
             <div class="card mb-4" style="border-radius: 0 12px 12px 12px; padding: 24px; border: 1px solid rgba(1,61,209,0.12); border-top: none; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
                 <form action="{{ route('admin.outgoing-letters.index') }}" method="GET" class="row g-3 align-items-end">
                     <input type="hidden" name="tab" value="submissions">
                     <div class="col-md-4">
-                        <label for="search_sub" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Search Keyword</label>
+                        <label for="search_sub" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Cari Keyword</label>
                         <input type="text" name="search" id="search_sub" class="form-control" style="height: 38px; border-radius: 6px;" placeholder="Purpose, addressed to, name..." value="{{ request('search') }}">
                     </div>
                     <div class="col-md-3">
@@ -99,7 +99,7 @@
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Ditujukan Kepada</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Jenis</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
-                                <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Submitted Date</th>
+                                <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Submitted Tanggal</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;" class="w-1">Aksi</th>
                             </tr>
                         </thead>
@@ -166,12 +166,12 @@
 
         <!-- Archive Tab -->
         <div class="tab-pane fade" id="archive-pane" role="tabpanel" aria-labelledby="archive-tab">
-            <!-- Search & Filter Bar -->
+            <!-- Cari & Filter Bar -->
             <div class="card mb-4" style="border-radius: 0 12px 12px 12px; padding: 24px; border: 1px solid rgba(1,61,209,0.12); border-top: none; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
                 <form action="{{ route('admin.outgoing-letters.index') }}" method="GET" class="row g-3 align-items-end">
                     <input type="hidden" name="tab" value="archive">
                     <div class="col-md-4">
-                        <label for="search_arc" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Search Keyword</label>
+                        <label for="search_arc" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Cari Keyword</label>
                         <input type="text" name="search" id="search_arc" class="form-control" style="height: 38px; border-radius: 6px;" placeholder="Purpose, addressed to, name..." value="{{ request('search') }}">
                     </div>
                     <div class="col-md-3">
@@ -212,7 +212,7 @@
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Ditujukan Kepada</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Jenis</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
-                                <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Submitted Date</th>
+                                <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Submitted Tanggal</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;" class="w-1">Aksi</th>
                             </tr>
                         </thead>
