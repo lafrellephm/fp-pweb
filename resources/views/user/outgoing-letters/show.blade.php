@@ -13,9 +13,7 @@
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
-            </svg>
-            Back to My Letters
-        </a>
+            </svg>Kembali ke Surat Saya</a>
     </div>
 
     {{-- Rejection Alert --}}
@@ -39,25 +37,25 @@
     <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); max-width: 900px;">
         <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
             <div class="d-flex align-items-center justify-content-between">
-                <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Letter Information</h3>
+                <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Informasi Surat</h3>
                 <div>
                     @if($letter->status === 'draft')
-                        <span class="status-badge status-draft">Draft</span>
+                        <span class="status-badge status-draft">Draf</span>
                     @elseif($letter->status === 'pending_approval')
-                        <span class="status-badge status-menunggu_approval">Pending Approval</span>
+                        <span class="status-badge status-menunggu_approval">Menunggu Persetujuan</span>
                     @elseif($letter->status === 'approved')
-                        <span class="status-badge status-disetujui">Approved</span>
+                        <span class="status-badge status-disetujui">Disetujui</span>
                     @elseif($letter->status === 'rejected')
-                        <span class="status-badge status-ditolak">Rejected</span>
+                        <span class="status-badge status-ditolak">Ditolak</span>
                     @elseif($letter->status === 'sent')
-                        <span class="status-badge status-terkirim">Sent</span>
+                        <span class="status-badge status-terkirim">Terkirim</span>
                     @endif
                 </div>
             </div>
         </div>
         <div class="card-body" style="padding: 24px;">
             <div class="row mb-4">
-                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Letter Type</div>
+                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Jenis Surat</div>
                 <div class="col-sm-8 text-dark">
                     @if($letter->letter_type === 'recommendation')
                         Recommendation Letter
@@ -69,32 +67,32 @@
                 </div>
             </div>
             <div class="row mb-4">
-                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Name of Person Concerned</div>
+                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Nama yang Bersangkutan</div>
                 <div class="col-sm-8 text-dark">{{ $letter->related_name }}</div>
             </div>
             <div class="row mb-4">
-                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Purpose / Reason</div>
+                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Tujuan / Alasan</div>
                 <div class="col-sm-8 text-dark">{{ $letter->purpose }}</div>
             </div>
             <div class="row mb-4">
-                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Addressed To</div>
+                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Ditujukan Kepada</div>
                 <div class="col-sm-8 text-dark">{{ $letter->addressed_to }}</div>
             </div>
             <div class="row mb-4">
-                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Letter Content</div>
+                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Isi Surat</div>
                 <div class="col-sm-8 text-dark" style="white-space: pre-wrap;">{{ $letter->letter_body }}</div>
             </div>
 
             @if($letter->letter_number)
                 <div class="row mb-4">
-                    <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Letter Number</div>
+                    <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Nomor Surat</div>
                     <div class="col-sm-8" style="font-weight: 600; color: #1A2744;">{{ $letter->letter_number }}</div>
                 </div>
             @endif
 
             @if($letter->letter_date)
                 <div class="row mb-4">
-                    <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Letter Date</div>
+                    <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Tanggal Surat</div>
                     <div class="col-sm-8 text-dark">{{ $letter->letter_date->format('d F Y') }}</div>
                 </div>
             @endif
@@ -103,31 +101,31 @@
             @if($letter->letter_type === 'assignment')
                 <div class="row mb-4 pt-3" style="border-top: 1px solid #f1f3f8;">
                     <div class="col-12 mb-3">
-                        <span style="font-size: 14px; font-weight: 600; color: #1A2744;">Assignment Details</span>
+                        <span style="font-size: 14px; font-weight: 600; color: #1A2744;">Detail Penugasan</span>
                     </div>
                 </div>
                 @if($letter->event_name)
                     <div class="row mb-4">
-                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Event Name</div>
+                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Nama Acara</div>
                         <div class="col-sm-8 text-dark">{{ $letter->event_name }}</div>
                     </div>
                 @endif
                 @if($letter->event_date)
                     <div class="row mb-4">
-                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Event Date</div>
+                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Tanggal Acara</div>
                         <div class="col-sm-8 text-dark">{{ $letter->event_date->format('d F Y') }}</div>
                     </div>
                 @endif
                 @if($letter->event_location)
                     <div class="row mb-4">
-                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Event Location</div>
+                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Lokasi Acara</div>
                         <div class="col-sm-8 text-dark">{{ $letter->event_location }}</div>
                     </div>
                 @endif
             @endif
 
             <div class="row mb-4">
-                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Date Submitted</div>
+                <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Tanggal Diajukan</div>
                 <div class="col-sm-8 text-dark">{{ $letter->created_at->format('d F Y, H:i') }}</div>
             </div>
 
@@ -155,10 +153,8 @@
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
                             <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
                             <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
-                        </svg>
-                        Edit Letter
-                    </a>
-                    <form action="{{ route('user.outgoing-letters.destroy', $letter->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this letter?');">
+                        </svg>Edit Surat</a>
+                    <form action="{{ route('user.outgoing-letters.destroy', $letter->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus surat ini?');">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-outline-danger" style="height: 40px; border-radius: 6px;">

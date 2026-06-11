@@ -32,25 +32,25 @@
             <div class="card h-100" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
                 <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Letter Information</h3>
+                        <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Informasi Surat</h3>
                         <div>
                             @if($letter->status === 'unassigned')
                                 <span class="badge" style="background-color: #FEF3C7; color: #D97706; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Unassigned</span>
                             @elseif($letter->status === 'assigned')
                                 <span class="badge" style="background-color: #DBEAFE; color: #2563EB; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Assigned</span>
                             @elseif($letter->status === 'completed')
-                                <span class="badge" style="background-color: #D1FAE5; color: #059669; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Completed</span>
+                                <span class="badge" style="background-color: #D1FAE5; color: #059669; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Selesai</span>
                             @endif
                         </div>
                     </div>
                 </div>
                 <div class="card-body" style="padding: 24px;">
                     <div class="row mb-4">
-                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Letter Number</div>
+                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Nomor Surat</div>
                         <div class="col-sm-8" style="font-weight: 600; color: #1A2744;">{{ $letter->letter_number }}</div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Sender</div>
+                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Pengirim</div>
                         <div class="col-sm-8 text-dark">{{ $letter->sender }}</div>
                     </div>
                     <div class="row mb-4">
@@ -58,11 +58,11 @@
                         <div class="col-sm-8 text-dark">{{ $letter->subject }}</div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Letter Type</div>
+                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Jenis Surat</div>
                         <div class="col-sm-8 text-dark">{{ ucfirst($letter->letter_type) }}</div>
                     </div>
                     <div class="row mb-4">
-                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Letter Date</div>
+                        <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Tanggal Surat</div>
                         <div class="col-sm-8 text-dark">{{ $letter->letter_date->format('d F Y') }}</div>
                     </div>
                     <div class="row mb-4">
@@ -109,7 +109,7 @@
                             <select name="status" id="status" class="form-select" style="height: 38px; border-radius: 6px;">
                                 <option value="unassigned" {{ $letter->status === 'unassigned' ? 'selected' : '' }}>Unassigned</option>
                                 <option value="assigned" {{ $letter->status === 'assigned' ? 'selected' : '' }}>Assigned</option>
-                                <option value="completed" {{ $letter->status === 'completed' ? 'selected' : '' }}>Completed</option>
+                                <option value="completed" {{ $letter->status === 'completed' ? 'selected' : '' }}>Selesai</option>
                             </select>
                         </div>
                         <button type="submit" class="btn btn-primary w-100" style="height: 40px; border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">Update Status</button>
@@ -123,7 +123,7 @@
     <div class="card mt-2" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
         <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
             <div class="d-flex align-items-center justify-content-between">
-                <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Dispositions</h3>
+                <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Disposisi</h3>
             </div>
         </div>
         <div class="table-responsive">
@@ -147,7 +147,7 @@
                                 @elseif($disposition->status === 'read')
                                     <span class="badge bg-info">Read</span>
                                 @elseif($disposition->status === 'completed')
-                                    <span class="badge bg-success">Completed</span>
+                                    <span class="badge bg-success">Selesai</span>
                                 @else
                                     <span class="badge bg-secondary">{{ ucfirst($disposition->status) }}</span>
                                 @endif

@@ -42,6 +42,11 @@
     --bs-border-radius-lg: 12px;
 }
 
+.bg-primary-dark{
+    --bs-bg-opacity: 1;
+    background-color: var(--sidebar-bg) !important;
+}
+
 /* ---------------------------------------------------------
    2. Base Elements
 --------------------------------------------------------- */
@@ -65,21 +70,21 @@ a:hover {
 }
 
 h1, .h1 {
-    font-size: 64px;
+    font-size: 48px;
     font-weight: 700;
     line-height: 56px;
     margin-bottom: 16px;
 }
 
 h2, .h2 {
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 600;
     line-height: 28px;
     margin-bottom: 16px;
 }
 
 h3, .h3 {
-    font-size: 32px;
+    font-size: 24px;
     font-weight: 600;
     line-height: 24px;
     margin-bottom: 16px;
@@ -225,7 +230,7 @@ h3, .h3 {
 }
 
 .btn-primary {
-    background-color: #066FD1;
+    background-color: var(--bs-primary);
     color: #FFFFFF;
     font-size: 14px;
     font-weight: 500;

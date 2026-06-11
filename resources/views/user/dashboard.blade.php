@@ -5,8 +5,8 @@
 @section('page-content')
 <div class="container-fluid">
     <div style="margin-bottom: 24px; margin-top: 12px;">
-        <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Welcome back, {{ auth()->user()->name }}!</h2>
-        <p style="font-size: 14px; color: #6A7380; margin: 0;">Here's an overview of your letter submissions.</p>
+        <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Selamat datang kembali, {{ auth()->user()->name }}!</h2>
+        <p style="font-size: 14px; color: #6A7380; margin: 0;">Berikut adalah ringkasan pengajuan surat Anda.</p>
     </div>
 
     {{-- Statistic Cards --}}
@@ -24,7 +24,7 @@
                         </svg>
                     </div>
                     <div>
-                        <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Total Submitted</div>
+                        <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Total Diajukan</div>
                         <div style="font-size: 32px; font-weight: 700; color: #066FD1; margin-top: 4px;">{{ $totalLetters }}</div>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
                         </svg>
                     </div>
                     <div>
-                        <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Drafts</div>
+                        <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Draf</div>
                         <div style="font-size: 32px; font-weight: 700; color: #4E5967; margin-top: 4px;">{{ $draftCount }}</div>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                         </svg>
                     </div>
                     <div>
-                        <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Pending Approval</div>
+                        <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Menunggu Persetujuan</div>
                         <div style="font-size: 32px; font-weight: 700; color: #D97706; margin-top: 4px;">{{ $pendingCount }}</div>
                     </div>
                 </div>
@@ -77,7 +77,7 @@
                         </svg>
                     </div>
                     <div>
-                        <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Approved / Sent</div>
+                        <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Disetujui / Terkirim</div>
                         <div style="font-size: 32px; font-weight: 700; color: #059669; margin-top: 4px;">{{ $approvedCount }}</div>
                     </div>
                 </div>
@@ -88,16 +88,16 @@
     {{-- Recent Letters Section --}}
     <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
         <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
-            <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Recent Letters</h3>
+            <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Surat Terbaru</h3>
         </div>
         <div class="table-responsive">
             <table class="table table-vcenter mb-0">
                 <thead style="background-color: #F8FAFC;">
                     <tr>
-                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Subject / Purpose</th>
-                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Type</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Perihal / Tujuan</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Jenis</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
-                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Date Submitted</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Tanggal Diajukan</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -115,24 +115,22 @@
                             </td>
                             <td>
                                 @if($letter->status === 'draft')
-                                    <span class="status-badge status-draft">Draft</span>
+                                    <span class="status-badge status-draft">Draf</span>
                                 @elseif($letter->status === 'pending_approval')
-                                    <span class="status-badge status-menunggu_approval">Pending Approval</span>
+                                    <span class="status-badge status-menunggu_approval">Menunggu Persetujuan</span>
                                 @elseif($letter->status === 'approved')
-                                    <span class="status-badge status-disetujui">Approved</span>
+                                    <span class="status-badge status-disetujui">Disetujui</span>
                                 @elseif($letter->status === 'rejected')
-                                    <span class="status-badge status-ditolak">Rejected</span>
+                                    <span class="status-badge status-ditolak">Ditolak</span>
                                 @elseif($letter->status === 'sent')
-                                    <span class="status-badge status-terkirim">Sent</span>
+                                    <span class="status-badge status-terkirim">Terkirim</span>
                                 @endif
                             </td>
                             <td class="text-muted">{{ $letter->created_at->format('d M Y') }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="4" class="text-center py-5 text-muted">
-                                You have not submitted any letters yet.
-                            </td>
+                            <td colspan="4" class="text-center py-5 text-muted">Anda belum mengajukan surat apapun.</td>
                         </tr>
                     @endforelse
                 </tbody>

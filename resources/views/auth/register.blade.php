@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Register</title>
+    <title>Daftar</title>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -14,7 +14,7 @@
 
         <!-- Name -->
         <div class="">
-            <label for="name">{{ __('Name') }}
+            <label for="name">{{ __('Nama') }}
             </label>
             <input id="name" type="text" name="name" value="{{ old('name') }}" required autofocus autocomplete="name">
             @error('name')
@@ -33,16 +33,16 @@
 
         <!-- Password -->
         <div>
-            <label for="password">{{ __('Password') }}</label>
+            <label for="password">{{ __('Kata Sandi') }}</label>
             <input id="password" type="password" name="password" required autocomplete="new-password">
             @error('password')
                 <div>{{ $message }}</div>
             @enderror
-        </div>
+        </div>      
 
         <!-- Confirm Password -->
         <div>
-            <label for="password_confirmation">{{ __('Confirm Password') }}</label>
+            <label for="password_confirmation">{{ __('Konfirmasi Kata Sandi') }}</label>
             <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password">
             @error('password_confirmation')
                 <div>{{ $message }}</div>
@@ -51,11 +51,11 @@
 
         <div>
             <a href="{{ route('login') }}" class="">
-                {{ __('Already registered?') }}
+                {{ __('Sudah punya akun?') }}
             </a>
 
             <button type="submit">
-                {{ __('Register') }}
+                {{ __('Daftar') }}
             </button>
         </div>
     </form>

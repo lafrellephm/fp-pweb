@@ -43,7 +43,7 @@
                     </svg> --}}
                 </div>
                 <div>
-                    <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Pending Approval</div>
+                    <div style="font-size: 12px; font-weight: 500; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px;">Menunggu Persetujuan</div>
                     <div style="font-size: 32px; font-weight: 700; color: #D97706; margin-top: 4px;">{{ $pendingApproval }}</div>
                 </div>
             </div>

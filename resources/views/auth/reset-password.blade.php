@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Reset Password</title>
+    <title>Atur Ulang Kata Sandi</title>
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -25,7 +25,7 @@
 
         <!-- Password -->
         <div>
-            <label for="password">{{ __('Password') }}</label>
+            <label for="password">{{ __('Kata Sandi') }}</label>
             <input id="password" type="password" name="password" required autocomplete="new-password">
             @error('password')
                 <div>{{ $message }}</div>
@@ -34,7 +34,7 @@
 
         <!-- Confirm Password -->
         <div>
-            <label for="password_confirmation">{{ __('Confirm Password') }}</label>
+            <label for="password_confirmation">{{ __('Konfirmasi Kata Sandi') }}</label>
             <input id="password_confirmation" type="password" name="password_confirmation" required autocomplete="new-password">
             @error('password_confirmation')
                 <div>{{ $message }}</div>
@@ -43,7 +43,7 @@
 
         <div>
             <button type="submit">
-                {{ __('Reset Password') }}
+                {{ __('Atur Ulang Kata Sandi') }}
             </button>
         </div>
     </form>
