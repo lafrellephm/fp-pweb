@@ -7,8 +7,8 @@
 <div class="container-fluid">
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
-            <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Incoming Letter Detail</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">Lihat complete details and track dispositions.</p>
+            <h2>Incoming Letter Detail</h2>
+            <p class="m-0" style="font-size: 14px; color: #6A7380; ">Lihat complete details and track dispositions.</p>
         </div>
         <a href="{{ route('admin.incoming-letters.index') }}" class="btn btn-outline-secondary" style="height: 40px; border-radius: 6px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
@@ -19,32 +19,26 @@
         </a>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 8px;">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
 
     <div class="row">
         <!-- Detail Surat -->
         <div class="col-lg-8 mb-4">
             <div class="card h-100" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
-                <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
+                <div class="card-header bg-white py-4 px-4" style="border-bottom: 1px solid #f1f3f8; ">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Informasi Surat</h3>
+                        <h3>Informasi Surat</h3>
                         <div>
                             @if($letter->status === 'unassigned')
-                                <span class="badge" style="background-color: #FEF3C7; color: #D97706; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Unassigned</span>
+                                <span class="status-badge status-belum_disposisi">Unassigned</span>
                             @elseif($letter->status === 'assigned')
-                                <span class="badge" style="background-color: #DBEAFE; color: #2563EB; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Assigned</span>
+                                <span class="status-badge status-sudah_disposisi">Assigned</span>
                             @elseif($letter->status === 'completed')
-                                <span class="badge" style="background-color: #D1FAE5; color: #059669; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Selesai</span>
+                                <span class="status-badge status-selesai">Selesai</span>
                             @endif
                         </div>
                     </div>
                 </div>
-                <div class="card-body" style="padding: 24px;">
+                <div class="card-body p-4\">
                     <div class="row mb-4">
                         <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Nomor Surat</div>
                         <div class="col-sm-8" style="font-weight: 600; color: #1A2744;">{{ $letter->letter_number }}</div>
@@ -97,10 +91,10 @@
         <!-- Status Perbarui Form -->
         <div class="col-lg-4 mb-4">
             <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
-                <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
-                    <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Perbarui Status</h3>
+                <div class="card-header bg-white py-4 px-4" style="border-bottom: 1px solid #f1f3f8; ">
+                    <h3>Perbarui Status</h3>
                 </div>
-                <div class="card-body" style="padding: 24px;">
+                <div class="card-body p-4\">
                     <form action="{{ route('admin.incoming-letters.status', $letter->id) }}" method="POST">
                         @csrf
                         @method('PATCH')
@@ -121,9 +115,9 @@
 
     <!-- Dispositions Section -->
     <div class="card mt-2" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
-        <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
+        <div class="card-header bg-white py-4 px-4" style="border-bottom: 1px solid #f1f3f8; ">
             <div class="d-flex align-items-center justify-content-between">
-                <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Disposisi</h3>
+                <h3>Disposisi</h3>
                 <a href="{{ route('admin.dispositions.create', ['incoming_letter_id' => $letter->id]) }}" class="btn btn-primary btn-sm" style="border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1">
                         <line x1="12" y1="5" x2="12" y2="19"></line>
@@ -149,13 +143,13 @@
                             <td>{{ Str::limit($disposition->instructions, 50) }}</td>
                             <td>
                                 @if($disposition->status === 'unread')
-                                    <span class="badge bg-secondary">Unread</span>
+                                    <span class="status-badge status-belum_dibaca">Unread</span>
                                 @elseif($disposition->status === 'read')
-                                    <span class="badge bg-info">Read</span>
+                                    <span class="status-badge status-dibaca">Read</span>
                                 @elseif($disposition->status === 'completed')
-                                    <span class="badge bg-success">Selesai</span>
+                                    <span class="status-badge status-selesai">Selesai</span>
                                 @else
-                                    <span class="badge bg-secondary">{{ ucfirst($disposition->status) }}</span>
+                                    <span class="status-badge status-belum_dibaca">{{ ucfirst($disposition->status) }}</span>
                                 @endif
                             </td>
                             <td class="text-muted">{{ $disposition->created_at->format('d M Y, H:i') }}</td>

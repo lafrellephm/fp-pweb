@@ -8,8 +8,7 @@
 <div class="container-fluid">
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
-            <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Outgoing Letter Submissions</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">Review, process, and manage outgoing letters from users.</p>
+            <h2 class="text-primary">Surat Keluar</h2>
         </div>
     </div>
 
@@ -53,7 +52,7 @@
         <!-- Submissions Tab -->
         <div class="tab-pane fade show active" id="submissions-pane" role="tabpanel" aria-labelledby="submissions-tab">
             <!-- Cari & Filter Bar -->
-            <div class="card mb-4" style="border-radius: 0 12px 12px 12px; padding: 24px; border: 1px solid rgba(1,61,209,0.12); border-top: none; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <div class="card mb-4 p-4\" style="border-radius: 0 12px 12px 12px;  border: 1px solid rgba(1,61,209,0.12); border-top: none; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
                 <form action="{{ route('admin.outgoing-letters.index') }}" method="GET" class="row g-3 align-items-end">
                     <input type="hidden" name="tab" value="submissions">
                     <div class="col-md-4">
@@ -79,7 +78,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 d-flex">
-                        <button type="submit" class="btn btn-secondary w-100 me-2" style="height: 38px; border-radius: 6px;">Filter</button>
+                        <button type="submit" class="btn btn-secondary w-100 me-2" >Filter</button>
                         @if(request()->hasAny(['search', 'status', 'type']))
                             <a href="{{ route('admin.outgoing-letters.index') }}" class="btn btn-outline-danger w-100" style="height: 38px; border-radius: 6px;">Reset</a>
                         @endif
@@ -99,7 +98,8 @@
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Ditujukan Kepada</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Jenis</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
-                                <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Submitted Tanggal</th>
+                                <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Urgensi</th>
+                                <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Tanggal Diajukan</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;" class="w-1">Aksi</th>
                             </tr>
                         </thead>
@@ -116,11 +116,11 @@
                                     <td>{{ Str::limit($letter->addressed_to, 25) }}</td>
                                     <td>
                                         @if($letter->letter_type === 'recommendation')
-                                            Recommendation
+                                            Rekomendasi
                                         @elseif($letter->letter_type === 'active_certificate')
-                                            Active Certificate
+                                            Keterangan Aktif
                                         @elseif($letter->letter_type === 'assignment')
-                                            Assignment
+                                            Surat Tugas
                                         @else
                                             {{ ucfirst($letter->letter_type) }}
                                         @endif
@@ -132,6 +132,15 @@
                                             <span class="status-badge status-menunggu_approval">Menunggu Persetujuan</span>
                                         @elseif($letter->status === 'rejected')
                                             <span class="status-badge status-ditolak">Ditolak</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($letter->urgency === 'critical')
+                                            <span class="badge bg-danger">Kritis</span>
+                                        @elseif($letter->urgency === 'urgent')
+                                            <span class="badge bg-warning text-dark">Mendesak</span>
+                                        @else
+                                            <span class="badge bg-secondary">Normal</span>
                                         @endif
                                     </td>
                                     <td class="text-muted">{{ $letter->created_at->format('d M Y') }}</td>
@@ -167,7 +176,7 @@
         <!-- Archive Tab -->
         <div class="tab-pane fade" id="archive-pane" role="tabpanel" aria-labelledby="archive-tab">
             <!-- Cari & Filter Bar -->
-            <div class="card mb-4" style="border-radius: 0 12px 12px 12px; padding: 24px; border: 1px solid rgba(1,61,209,0.12); border-top: none; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <div class="card mb-4 p-4\" style="border-radius: 0 12px 12px 12px;  border: 1px solid rgba(1,61,209,0.12); border-top: none; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
                 <form action="{{ route('admin.outgoing-letters.index') }}" method="GET" class="row g-3 align-items-end">
                     <input type="hidden" name="tab" value="archive">
                     <div class="col-md-4">
@@ -212,7 +221,8 @@
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Ditujukan Kepada</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Jenis</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
-                                <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Submitted Tanggal</th>
+                                <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Urgensi</th>
+                                <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Tanggal Diajukan</th>
                                 <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;" class="w-1">Aksi</th>
                             </tr>
                         </thead>
@@ -229,11 +239,11 @@
                                     <td>{{ Str::limit($letter->addressed_to, 25) }}</td>
                                     <td>
                                         @if($letter->letter_type === 'recommendation')
-                                            Recommendation
+                                            Rekomendasi
                                         @elseif($letter->letter_type === 'active_certificate')
-                                            Active Certificate
+                                            Keterangan Aktif
                                         @elseif($letter->letter_type === 'assignment')
-                                            Assignment
+                                            Surat Tugas
                                         @else
                                             {{ ucfirst($letter->letter_type) }}
                                         @endif
@@ -243,6 +253,15 @@
                                             <span class="status-badge status-disetujui">Disetujui</span>
                                         @elseif($letter->status === 'sent')
                                             <span class="status-badge status-terkirim">Terkirim</span>
+                                        @endif
+                                    </td>
+                                    <td>
+                                        @if($letter->urgency === 'critical')
+                                            <span class="badge bg-danger">Kritis</span>
+                                        @elseif($letter->urgency === 'urgent')
+                                            <span class="badge bg-warning text-dark">Mendesak</span>
+                                        @else
+                                            <span class="badge bg-secondary">Normal</span>
                                         @endif
                                     </td>
                                     <td class="text-muted">{{ $letter->created_at->format('d M Y') }}</td>

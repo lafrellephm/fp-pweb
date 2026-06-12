@@ -3,6 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreIncomingLetterRequest;
+use App\Http\Requests\UpdateIncomingLetterRequest;
+use App\Http\Requests\UpdateIncomingLetterStatusRequest;
 use App\Models\IncomingLetter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +36,9 @@ class AdminIncomingLetterController extends Controller
             $query->where('letter_type', $request->type);
         }
 
-        $letters = $query->latest()->paginate(10)->withQueryString();
+        $letters = $query->orderByRaw("CASE urgency WHEN 'critical' THEN 1 WHEN 'urgent' THEN 2 WHEN 'normal' THEN 3 END")
+                         ->orderBy('received_date', 'asc')
+                         ->paginate(10)->withQueryString();
 
         return view('admin.incoming-letters.index', compact('letters'));
     }
@@ -49,17 +54,9 @@ class AdminIncomingLetterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreIncomingLetterRequest $request)
     {
-        $validated = $request->validate([
-            'letter_number' => 'required|string|max:50',
-            'letter_date'   => 'required|date',
-            'received_date' => 'required|date',
-            'sender'        => 'required|string|max:100',
-            'letter_type'   => 'required|in:invitation,announcement',
-            'subject'       => 'required|string|max:255',
-            'file_path'     => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasFile('file_path')) {
             $validated['file_path'] = $request->file('file_path')->store('incoming-letters', 'public');
@@ -71,7 +68,7 @@ class AdminIncomingLetterController extends Controller
         IncomingLetter::create($validated);
 
         return redirect()->route('admin.incoming-letters.index')
-                         ->with('success', 'Incoming letter created successfully.');
+                         ->with('success', 'Surat masuk berhasil ditambahkan.');
     }
 
     /**
@@ -96,19 +93,11 @@ class AdminIncomingLetterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateIncomingLetterRequest $request, string $id)
     {
         $letter = IncomingLetter::findOrFail($id);
 
-        $validated = $request->validate([
-            'letter_number' => 'required|string|max:50',
-            'letter_date'   => 'required|date',
-            'received_date' => 'required|date',
-            'sender'        => 'required|string|max:100',
-            'letter_type'   => 'required|in:invitation,announcement',
-            'subject'       => 'required|string|max:255',
-            'file_path'     => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
-        ]);
+        $validated = $request->validated();
 
         if ($request->hasFile('file_path')) {
             // Optionally delete the old file
@@ -121,7 +110,7 @@ class AdminIncomingLetterController extends Controller
         $letter->update($validated);
 
         return redirect()->route('admin.incoming-letters.index')
-                         ->with('success', 'Incoming letter updated successfully.');
+                         ->with('success', 'Surat masuk berhasil diperbarui.');
     }
 
     /**
@@ -138,22 +127,21 @@ class AdminIncomingLetterController extends Controller
         $letter->delete();
 
         return redirect()->route('admin.incoming-letters.index')
-                         ->with('success', 'Incoming letter deleted successfully.');
+                         ->with('success', 'Surat masuk berhasil dihapus.');
     }
 
     /**
      * Update the status of the specified resource.
      */
-    public function updateStatus(Request $request, string $id)
+    public function updateStatus(UpdateIncomingLetterStatusRequest $request, string $id)
     {
         $letter = IncomingLetter::findOrFail($id);
 
-        $validated = $request->validate([
-            'status' => 'required|in:unassigned,assigned,completed',
-        ]);
+        $validated = $request->validated();
 
         $letter->update(['status' => $validated['status']]);
 
-        return redirect()->back()->with('success', 'Status updated successfully.');
+        return redirect()->back()->with('success', 'Status surat masuk berhasil diperbarui.');
     }
 }
+

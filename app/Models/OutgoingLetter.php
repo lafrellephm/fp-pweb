@@ -22,6 +22,7 @@ class OutgoingLetter extends Model
         'event_location',
         'file_path',
         'status',
+        'urgency',
         'rejection_note',
         'created_by',
         'approved_by',

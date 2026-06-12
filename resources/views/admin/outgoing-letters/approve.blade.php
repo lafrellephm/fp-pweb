@@ -8,8 +8,8 @@
 <div class="container-fluid">
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
-            <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Review Surat Keluar</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">Tinjau surat ini sebelum menyetujui atau menolak.</p>
+            <h2>Review Surat Keluar</h2>
+            <p class="m-0" style="font-size: 14px; color: #6A7380; ">Tinjau surat ini sebelum menyetujui atau menolak.</p>
         </div>
         <a href="{{ route('admin.outgoing-letters.show', $letter->id) }}" class="btn btn-outline-secondary" style="height: 40px; border-radius: 6px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
@@ -21,7 +21,7 @@
     </div>
 
     @if($errors->any())
-        <div class="alert" role="alert" style="background-color: #FEE2E2; border: 1px solid #FECACA; color: #991B1B; border-radius: 8px; padding: 16px 20px; margin-bottom: 20px;">
+        <div class="alert mb-4\" role="alert" class="py-3 px-4" style="background-color: #FEE2E2; border: 1px solid #FECACA; color: #991B1B; border-radius: 8px;  ">
             <ul class="mb-0" style="font-size: 14px;">
                 @foreach($errors->all() as $error)
                     <li>{{ $error }}</li>
@@ -33,14 +33,14 @@
     <div class="row">
         {{-- Letter Summary Card --}}
         <div class="col-lg-8 mb-4">
-            <div class="card h-100" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: rgba(0, 0, 0, 0.06) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; padding: 0;">
-                <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px; border-radius: 12px 12px 0 0;">
+            <div class="card h-100 p-0" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: rgba(0, 0, 0, 0.06) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; ">
+                <div class="card-header bg-white py-4 px-4" style="border-bottom: 1px solid #f1f3f8;  border-radius: 12px 12px 0 0;">
                     <div class="d-flex align-items-center justify-content-between">
-                        <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Informasi Surat</h3>
+                        <h3>Informasi Surat</h3>
                         <span class="status-badge status-menunggu_approval">Menunggu Persetujuan</span>
                     </div>
                 </div>
-                <div class="card-body" style="padding: 24px;">
+                <div class="card-body p-4\">
                     <div class="row mb-4">
                         <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Nama Terkait</div>
                         <div class="col-sm-8" style="font-weight: 600; color: #1A2744;">{{ $letter->related_name }}</div>
@@ -65,9 +65,9 @@
                         <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Jenis Surat</div>
                         <div class="col-sm-8 text-dark">
                             @if($letter->letter_type === 'recommendation')
-                                Surat Rekomendasi
+                                Rekomendasi
                             @elseif($letter->letter_type === 'active_certificate')
-                                Surat Keterangan Aktif
+                                Keterangan Aktif
                             @elseif($letter->letter_type === 'assignment')
                                 Surat Tugas
                             @else
@@ -77,7 +77,7 @@
                     </div>
 
                     @if($letter->letter_type === 'assignment')
-                        <div class="row mb-4" style="border-top: 1px solid #f1f3f8; padding-top: 16px;">
+                        <div class="row mb-4 pt-3" style="border-top: 1px solid #f1f3f8; ">
                             <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Nama Kegiatan</div>
                             <div class="col-sm-8 text-dark">{{ $letter->event_name ?? '-' }}</div>
                         </div>
@@ -91,7 +91,7 @@
                         </div>
                     @endif
 
-                    <div class="row mb-4" style="border-top: 1px solid #f1f3f8; padding-top: 16px;">
+                    <div class="row mb-4 pt-3" style="border-top: 1px solid #f1f3f8; ">
                         <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Isi Surat</div>
                         <div class="col-sm-8 text-dark" style="white-space: pre-wrap;">{{ $letter->letter_body }}</div>
                     </div>
@@ -118,11 +118,11 @@
 
         {{-- Decision Card --}}
         <div class="col-lg-4 mb-4">
-            <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: rgba(0, 0, 0, 0.06) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; padding: 0;">
-                <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px; border-radius: 12px 12px 0 0;">
-                    <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Keputusan</h3>
+            <div class="card p-0" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: rgba(0, 0, 0, 0.06) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px; ">
+                <div class="card-header bg-white py-4 px-4" style="border-bottom: 1px solid #f1f3f8;  border-radius: 12px 12px 0 0;">
+                    <h3>Keputusan</h3>
                 </div>
-                <div class="card-body" style="padding: 24px;">
+                <div class="card-body p-4\">
                     {{-- Setujui Form --}}
                     <form method="POST" action="{{ route('admin.outgoing-letters.approve', $letter->id) }}" id="approve-form" class="mb-3">
                         @csrf
@@ -151,8 +151,8 @@
                         @method('PATCH')
                         <div class="mb-3">
                             <label for="rejection_note" class="form-label" style="font-weight: 500; color: #4E5967;">Catatan Penolakan <span style="color: #EF4444;">*</span></label>
-                            <textarea name="rejection_note" id="rejection_note" class="form-control" rows="4" required maxlength="1000" placeholder="Tulis alasan penolakan surat ini..." style="border-radius: 6px; border: 1px solid rgba(1, 61, 209, 0.08); min-height: 120px; padding: 12px; font-size: 14px; resize: vertical;">{{ old('rejection_note') }}</textarea>
-                            <div class="form-text" style="font-size: 12px; color: #9BA3AF; margin-top: 4px;">Maksimal 1000 karakter</div>
+                            <textarea name="rejection_note" id="rejection_note" class="form-control p-2" rows="4" required maxlength="1000" placeholder="Tulis alasan penolakan surat ini..." style="border-radius: 6px; border: 1px solid rgba(1, 61, 209, 0.08); min-height: 120px;  font-size: 14px; resize: vertical;">{{ old('rejection_note') }}</textarea>
+                            <div class="form-text mt-1" style="font-size: 12px; color: #9BA3AF; ">Maksimal 1000 karakter</div>
                         </div>
                         <button type="submit" id="btn-confirm-reject" class="btn w-100" style="height: 40px; border-radius: 6px; background-color: #EF4444; color: #FFFFFF; border: none; font-size: 14px; font-weight: 500;" onclick="return confirm('Apakah Anda yakin ingin menolak surat ini?')">
                             Konfirmasi Tolak

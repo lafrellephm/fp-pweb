@@ -9,7 +9,7 @@
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
             <h2>Surat Masuk</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">Manage and track all incoming letters.</p>
+            <p class="m-0" style="font-size: 14px; color: #6A7380; ">Manage and track all incoming letters.</p>
         </div>
         <a href="{{ route('admin.incoming-letters.create') }}" class="btn btn-primary" style="height: 40px; border-radius: 6px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
@@ -19,7 +19,7 @@
     </div>
 
     <!-- Cari & Filter Bar -->
-    <div class="card mb-4" style="border-radius: 12px; padding: 24px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+    <div class="card mb-4 p-4" style="border-radius: 12px;  border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
         <form action="{{ route('admin.incoming-letters.index') }}" method="GET" class="row g-3 align-items-end">
             <div class="col-md-4">
                 <label for="search" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Cari Keyword</label>
@@ -29,8 +29,8 @@
                 <label for="status" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Status</label>
                 <select name="status" id="status" class="form-select" style="height: 38px; border-radius: 6px;">
                     <option value="">All Status</option>
-                    <option value="unassigned" {{ request('status') === 'unassigned' ? 'selected' : '' }}>Unassigned</option>
-                    <option value="assigned" {{ request('status') === 'assigned' ? 'selected' : '' }}>Assigned</option>
+                    <option value="unassigned" {{ request('status') === 'unassigned' ? 'selected' : '' }}>Belum diproses</option>
+                    <option value="assigned" {{ request('status') === 'assigned' ? 'selected' : '' }}>Menunggu diproses</option>
                     <option value="completed" {{ request('status') === 'completed' ? 'selected' : '' }}>Selesai</option>
                 </select>
             </div>
@@ -38,8 +38,8 @@
                 <label for="type" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Jenis</label>
                 <select name="type" id="type" class="form-select" style="height: 38px; border-radius: 6px;">
                     <option value="">All Types</option>
-                    <option value="undangan" {{ request('type') === 'undangan' ? 'selected' : '' }}>Undangan</option>
-                    <option value="pengumuman" {{ request('type') === 'pengumuman' ? 'selected' : '' }}>Pengumuman</option>
+                    <option value="invitation" {{ request('type') === 'invitation' ? 'selected' : '' }}>Undangan</option>
+                    <option value="announcement" {{ request('type') === 'announcement' ? 'selected' : '' }}>Pengumuman</option>
                 </select>
             </div>
             <div class="col-md-2 d-flex">
@@ -64,6 +64,7 @@
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Jenis</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Tanggal Diterima</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
+                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Urgensi</th>
                         <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;" class="w-1">Aksi</th>
                     </tr>
                 </thead>
@@ -74,25 +75,42 @@
                             <td style="font-weight: 500; color: #1A2744;">{{ $letter->letter_number }}</td>
                             <td>{{ $letter->sender }}</td>
                             <td>{{ Str::limit($letter->subject, 30) }}</td>
-                            <td>{{ ucfirst($letter->letter_type) }}</td>
+                            <td>
+                                @if(in_array($letter->letter_type, ['invitation', 'undangan']))
+                                    Undangan
+                                @elseif(in_array($letter->letter_type, ['announcement', 'pengumuman']))
+                                    Pengumuman
+                                @else
+                                    {{ ucfirst($letter->letter_type) }}
+                                @endif
+                            </td>
                             <td>{{ $letter->received_date->format('d M Y') }}</td>
                             <td>
                                 @if($letter->status === 'unassigned')
-                                    <span class="badge" style="background-color: #FEF3C7; color: #D97706; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Unassigned</span>
+                                    <span class="status-badge status-belum_disposisi">Belum diproses</span>
                                 @elseif($letter->status === 'assigned')
-                                    <span class="badge" style="background-color: #DBEAFE; color: #2563EB; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Assigned</span>
+                                    <span class="status-badge status-sudah_disposisi">Menunggu diproses</span>
                                 @elseif($letter->status === 'completed')
-                                    <span class="badge" style="background-color: #D1FAE5; color: #059669; padding: 6px 10px; border-radius: 4px; font-weight: 500;">Selesai</span>
+                                    <span class="status-badge status-selesai">Selesai</span>
                                 @endif
                             </td>
                             <td>
-                                <div class="btn-list flex-nowrap">
-                                    <a href="{{ route('admin.incoming-letters.show', $letter->id) }}" class="btn btn-sm btn-outline-info" style="border-radius: 6px;">Lihat</a>
-                                    <a href="{{ route('admin.incoming-letters.edit', $letter->id) }}" class="btn btn-sm btn-outline-primary" style="border-radius: 6px;">Ubah</a>
-                                    <form action="{{ route('admin.incoming-letters.destroy', $letter->id) }}" method="POST" class="d-inline" onsubmit="return confirm('Apakah Anda yakin ingin menghapus surat ini?');">
+                                @if($letter->urgency === 'critical')
+                                    <span class="badge bg-danger">Kritis</span>
+                                @elseif($letter->urgency === 'urgent')
+                                    <span class="badge bg-warning text-dark">Mendesak</span>
+                                @else
+                                    <span class="badge bg-secondary">Normal</span>
+                                @endif
+                            </td>
+                            <td>
+                                <div class="d-flex align-items-center gap-2">
+                                    <a href="{{ route('admin.incoming-letters.show', $letter->id) }}" class="btn btn-sm btn-primary py-0" >Lihat</a>
+                                    <a href="{{ route('admin.incoming-letters.edit', $letter->id) }}" class="btn btn-sm btn-secondary" >Ubah</a>
+                                    <form action="{{ route('admin.incoming-letters.destroy', $letter->id) }}" method="POST" class="m-0 d-inline-flex" onsubmit="return confirm('Apakah Anda yakin ingin menghapus surat ini?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-sm btn-outline-danger" style="border-radius: 6px;">Hapus</button>
+                                        <button type="submit" class="btn btn-sm btn-danger" >Hapus</button>
                                     </form>
                                 </div>
                             </td>

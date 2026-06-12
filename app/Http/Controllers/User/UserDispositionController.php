@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UpdateDispositionStatusRequest;
 use App\Models\Disposition;
 use Illuminate\Http\Request;
 
@@ -24,7 +25,7 @@ class UserDispositionController extends Controller
     /**
      * Update the status of a disposition.
      */
-    public function updateStatus(Request $request, string $id)
+    public function updateStatus(UpdateDispositionStatusRequest $request, string $id)
     {
         $disposition = Disposition::findOrFail($id);
 
@@ -32,15 +33,7 @@ class UserDispositionController extends Controller
             abort(403);
         }
 
-        $rules = [
-            'status' => 'required|in:read,completed',
-        ];
-
-        if ($request->input('status') === 'completed') {
-            $rules['reply_note'] = 'required|string|max:2000';
-        }
-
-        $validated = $request->validate($rules);
+        $validated = $request->validated();
 
         $disposition->status = $validated['status'];
 

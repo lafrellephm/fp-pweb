@@ -9,7 +9,6 @@
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
             <h2>Disposisi</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">Kelola dan pantau semua disposisi surat masuk.</p>
         </div>
         <a href="{{ route('admin.dispositions.create') }}" class="btn btn-primary" style="height: 40px; border-radius: 6px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
@@ -18,15 +17,9 @@
             </svg>Buat Disposisi</a>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 8px;">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
 
     <!-- Search Bar -->
-    <div class="card mb-4" style="border-radius: 12px; padding: 24px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+    <div class="card mb-4 p-4\" style="border-radius: 12px;  border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
         <form action="{{ route('admin.dispositions.index') }}" method="GET" class="row g-3 align-items-end">
             <div class="col-md-8">
                 <label for="search" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Cari</label>
@@ -65,11 +58,11 @@
                             <td>{{ Str::limit($disposition->instructions, 40) }}</td>
                             <td>
                                 @if($disposition->status === 'unread')
-                                    <span class="status-badge" style="background-color: #FEF3C7; color: #D97706;">Belum Dibaca</span>
+                                    <span class="status-badge status-belum_dibaca">Belum Dibaca</span>
                                 @elseif($disposition->status === 'read')
-                                    <span class="status-badge" style="background-color: #DBEAFE; color: #2563EB;">Dibaca</span>
+                                    <span class="status-badge status-dibaca">Dibaca</span>
                                 @elseif($disposition->status === 'completed')
-                                    <span class="status-badge" style="background-color: #D1FAE5; color: #059669;">Selesai</span>
+                                    <span class="status-badge status-selesai">Selesai</span>
                                 @endif
                             </td>
                             <td class="text-muted">{{ $disposition->created_at->format('d M Y') }}</td>

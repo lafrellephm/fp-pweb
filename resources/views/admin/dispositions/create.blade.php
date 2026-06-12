@@ -8,8 +8,8 @@
 <div class="container-fluid">
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
-            <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Buat Disposisi</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">Buat disposisi baru untuk surat masuk.</p>
+            <h2>Buat Disposisi</h2>
+            <p class="m-0" style="font-size: 14px; color: #6A7380; ">Buat disposisi baru untuk surat masuk.</p>
         </div>
         <a href="{{ route('admin.dispositions.index') }}" class="btn btn-outline-secondary" style="height: 40px; border-radius: 6px;">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
@@ -21,7 +21,7 @@
     </div>
 
     <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); max-width: 800px;">
-        <div class="card-body" style="padding: 32px;">
+        <div class="card-body p-4 p-md-5\">
             <form action="{{ route('admin.dispositions.store') }}" method="POST">
                 @csrf
 
@@ -31,7 +31,7 @@
                         <option value="" disabled {{ old('incoming_letter_id', $selectedLetterId) ? '' : 'selected' }}>Pilih surat masuk</option>
                         @foreach($incomingLetters as $letter)
                             <option value="{{ $letter->id }}" {{ (int) old('incoming_letter_id', $selectedLetterId) === $letter->id ? 'selected' : '' }}>
-                                {{ $letter->letter_number }} — {{ $letter->subject }}
+                                {{ $letter->letter_number }} â€” {{ $letter->subject }}
                             </option>
                         @endforeach
                     </select>

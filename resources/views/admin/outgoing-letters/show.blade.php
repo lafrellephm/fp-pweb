@@ -8,10 +8,9 @@
 <div class="container-fluid">
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
-            <h2 style="font-size: 20px; font-weight: 600; color: #4E5967; margin: 0 0 8px 0;">Outgoing Letter Detail</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">Lihat complete details of this outgoing letter submission.</p>
+            <h2>Detail Surat Keluar</h2>
         </div>
-        <a href="{{ route('admin.outgoing-letters.index') }}" class="btn btn-outline-secondary" style="height: 40px; border-radius: 6px;">
+        <a href="{{ route('admin.outgoing-letters.index') }}" class="btn btn-outline-secondary">
             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
                 <line x1="19" y1="12" x2="5" y2="12"></line>
                 <polyline points="12 19 5 12 12 5"></polyline>
@@ -20,25 +19,19 @@
         </a>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 8px;">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
 
     {{-- Rejection Note Alert --}}
     @if($letter->status === 'rejected' && $letter->rejection_note)
-        <div class="alert" role="alert" style="background-color: #FEE2E2; border: 1px solid #FECACA; color: #991B1B; border-radius: 8px; padding: 16px 20px; margin-bottom: 20px;">
+        <div class="alert mb-4\" role="alert" class="py-3 px-4" style="background-color: #FEE2E2; border: 1px solid #FECACA; color: #991B1B; border-radius: 8px;  ">
             <div class="d-flex align-items-start">
-                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-3 flex-shrink-0" style="margin-top: 2px;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-3 flex-shrink-0 mt-1">
                     <circle cx="12" cy="12" r="10"></circle>
                     <line x1="15" y1="9" x2="9" y2="15"></line>
                     <line x1="9" y1="9" x2="15" y2="15"></line>
                 </svg>
                 <div>
                     <strong style="font-size: 14px; font-weight: 600;">Rejection Note</strong>
-                    <p style="margin: 4px 0 0 0; font-size: 14px;">{{ $letter->rejection_note }}</p>
+                    <p class="mt-1" style=" font-size: 14px;">{{ $letter->rejection_note }}</p>
                 </div>
             </div>
         </div>
@@ -47,10 +40,10 @@
     <div class="row">
         <!-- Detail Surat -->
         <div class="col-lg-8 mb-4">
-            <div class="card h-100" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
-                <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Informasi Surat</h3>
+            <div class="card">
+                <div class="card-header bg-white p4" style="border-bottom: 1px solid #f1f3f8; ">
+                    <div class="d-flex justify-content-between py-2 m-2">
+                        <h3>Informasi Surat</h3>
                         <div>
                             @if($letter->status === 'draft')
                                 <span class="status-badge status-draft">Draf</span>
@@ -66,7 +59,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="card-body" style="padding: 24px;">
+                <div class="card-body p-4\">
                     <div class="row mb-4">
                         <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Diajukan Oleh</div>
                         <div class="col-sm-8">
@@ -84,11 +77,11 @@
                         <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Jenis Surat</div>
                         <div class="col-sm-8 text-dark">
                             @if($letter->letter_type === 'recommendation')
-                                Recommendation
+                                Rekomendasi
                             @elseif($letter->letter_type === 'active_certificate')
-                                Active Certificate
+                                Keterangan Aktif
                             @elseif($letter->letter_type === 'assignment')
-                                Assignment
+                                Surat Tugas
                             @else
                                 {{ ucfirst($letter->letter_type) }}
                             @endif
@@ -118,7 +111,7 @@
                     @endif
 
                     @if($letter->letter_type === 'assignment')
-                        <div class="row mb-4" style="border-top: 1px solid #f1f3f8; padding-top: 16px;">
+                        <div class="row mb-4 pt-3" style="border-top: 1px solid #f1f3f8; ">
                             <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Nama Acara</div>
                             <div class="col-sm-8 text-dark">{{ $letter->event_name ?? '-' }}</div>
                         </div>
@@ -132,7 +125,7 @@
                         </div>
                     @endif
 
-                    <div class="row mb-4" style="border-top: 1px solid #f1f3f8; padding-top: 16px;">
+                    <div class="row mb-4 pt-3" style="border-top: 1px solid #f1f3f8; ">
                         <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Letter Body</div>
                         <div class="col-sm-8 text-dark" style="white-space: pre-wrap;">{{ $letter->letter_body }}</div>
                     </div>
@@ -171,64 +164,83 @@
 
         <!-- Aksi Panel -->
         <div class="col-lg-4 mb-4">
-            <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
-                <div class="card-header bg-white" style="border-bottom: 1px solid #f1f3f8; padding: 20px 24px;">
-                    <h3 class="card-title m-0" style="font-weight: 600; font-size: 16px; color: #1A2744;">Aksi</h3>
+            <div class="card">
+                <div class="card-header bg-white p-4" style="border-bottom: 1px solid #f1f3f8; ">
+                    <h3 >Persetujuan Surat</h3>
                 </div>
-                <div class="card-body" style="padding: 24px;">
+                <div class="card-body p-4">
                     @if($letter->status === 'draft')
-                        <a href="{{ route('admin.outgoing-letters.process', $letter->id) }}" class="btn btn-primary w-100 mb-3" style="height: 40px; border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">
+                        <a href="{{ route('admin.outgoing-letters.process', $letter->id) }}" id="btn-process" class="btn btn-success w-100 mb-3" style="height: 40px; border-radius: 6px; color: #FFFFFF;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
-                                <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-                                <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+                                <polyline points="20 6 9 17 4 12"></polyline>
                             </svg>
-                            Proses This Letter
+                            Setujui & Beri Nomor
                         </a>
+
+                        <button type="button" class="btn btn-danger w-100 mb-3" data-bs-toggle="modal" data-bs-target="#rejectModal" style="height: 40px; border-radius: 6px; font-size: 14px; font-weight: 500;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                            Tolak
+                        </button>
                     @endif
 
                     @if($letter->status === 'approved')
-                        <form action="{{ route('admin.outgoing-letters.sent', $letter->id) }}" method="POST" onsubmit="return confirm('Mark this letter as sent?');">
-                            @csrf
-                            @method('PATCH')
-                            <button type="submit" class="btn btn-primary w-100 mb-3" style="height: 40px; border-radius: 6px; background-color: #059669; border-color: #059669;">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
-                                    <line x1="22" y1="2" x2="11" y2="13"></line>
-                                    <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
-                                </svg>Tandai Terkirim</button>
-                        </form>
-                        <a href="#" onclick="window.print();" class="btn btn-secondary w-100 mb-3" style="height: 40px; border-radius: 6px;">
+                        <button type="button" class="btn btn-success w-100 mb-3" data-bs-toggle="modal" data-bs-target="#sentModal" style="height: 40px; border-radius: 6px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                            </svg>Tandai Terkirim
+                        </button>
+                        <a href="{{ route('admin.outgoing-letters.print', $letter->id) }}" target="_blank" class="btn btn-primary w-100 mb-3" style="height: 40px; border-radius: 6px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
                                 <polyline points="6 9 6 2 18 2 18 9"></polyline>
                                 <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                                 <rect x="6" y="14" width="12" height="8"></rect>
                             </svg>
-                            Cetak Letter
+                            Cetak Surat
                         </a>
                     @endif
 
                     @if($letter->status === 'sent')
-                        <a href="#" onclick="window.print();" class="btn btn-secondary w-100 mb-3" style="height: 40px; border-radius: 6px;">
+                        <a href="{{ route('admin.outgoing-letters.print', $letter->id) }}" target="_blank" class="btn btn-primary w-100 mb-3" style="height: 40px; border-radius: 6px;">
                             <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
                                 <polyline points="6 9 6 2 18 2 18 9"></polyline>
                                 <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
                                 <rect x="6" y="14" width="12" height="8"></rect>
                             </svg>
-                            Cetak Letter
+                            Cetak Surat
                         </a>
                     @endif
 
-                    @if(in_array($letter->status, ['pending_approval', 'rejected']))
+                    @if($letter->status === 'pending_approval')
+                        <button type="button" class="btn btn-success w-100 mb-3" data-bs-toggle="modal" data-bs-target="#approveModal" style="height: 40px; border-radius: 6px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
+                                <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                            Setujui Surat
+                        </button>
+
+                        <button type="button" class="btn btn-danger w-100 mb-3" data-bs-toggle="modal" data-bs-target="#rejectModal" style="height: 40px; border-radius: 6px; font-size: 14px; font-weight: 500;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="15" y1="9" x2="9" y2="15"></line>
+                                <line x1="9" y1="9" x2="15" y2="15"></line>
+                            </svg>
+                            Tolak
+                        </button>
+                    @endif
+
+                    @if($letter->status === 'rejected')
                         <div class="text-center py-3">
                             <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#9BA3AF" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <circle cx="12" cy="12" r="10"></circle>
                                 <polyline points="12 6 12 12 16 14"></polyline>
                             </svg>
-                            <p style="font-size: 13px; color: #6A7380; margin-top: 12px;">
-                                @if($letter->status === 'pending_approval')
-                                    This letter is awaiting approval from Pimpinan.
-                                @elseif($letter->status === 'rejected')
-                                    This letter has been rejected. The user may revise and resubmit.
-                                @endif
+                            <p class="mt-3" style="font-size: 13px; color: #6A7380; ">
+                                Surat ini telah ditolak. Pengguna dapat merevisi dan mengajukan ulang.
                             </p>
                         </div>
                     @endif
@@ -237,4 +249,78 @@
         </div>
     </div>
 </div>
+
+<!-- Approve Modal -->
+<div class="modal fade" id="approveModal" tabindex="-1" aria-labelledby="approveModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 12px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title" id="approveModalLabel" style="font-weight: 600;">Konfirmasi Persetujuan</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p style="color: #4E5967;">Apakah Anda yakin ingin menyetujui surat ini?</p>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" style="border-radius: 6px;">Batal</button>
+        <form method="POST" action="{{ route('admin.outgoing-letters.approve', $letter->id) }}" class="m-0">
+            @csrf
+            @method('PATCH')
+            <button type="submit" class="btn btn-success" style="border-radius: 6px;">Setujui Surat</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Sent Modal -->
+<div class="modal fade" id="sentModal" tabindex="-1" aria-labelledby="sentModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 12px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title" id="sentModalLabel" style="font-weight: 600;">Konfirmasi Terkirim</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p style="color: #4E5967;">Apakah Anda yakin ingin menandai surat ini sebagai terkirim?</p>
+      </div>
+      <div class="modal-footer border-0 pt-0">
+        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" style="border-radius: 6px;">Batal</button>
+        <form method="POST" action="{{ route('admin.outgoing-letters.sent', $letter->id) }}" class="m-0">
+            @csrf
+            @method('PATCH')
+            <button type="submit" class="btn btn-success" style="border-radius: 6px;">Tandai Terkirim</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Reject Modal -->
+<div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius: 12px; border: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+      <div class="modal-header border-0 pb-0">
+        <h5 class="modal-title" id="rejectModalLabel" style="font-weight: 600;">Penolakan Surat</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="POST" action="{{ route('admin.outgoing-letters.reject', $letter->id) }}">
+          @csrf
+          @method('PATCH')
+          <div class="modal-body">
+              <div class="mb-3">
+                  <label for="rejection_note" class="form-label" style="font-weight: 500; color: #4E5967; font-size: 14px;">Catatan Penolakan <span style="color: #EF4444;">*</span></label>
+                  <textarea name="rejection_note" id="rejection_note" class="form-control p-2" rows="4" required maxlength="1000" placeholder="Tulis alasan penolakan surat ini..." style="border-radius: 6px; border: 1px solid rgba(1, 61, 209, 0.08); min-height: 120px; font-size: 14px; resize: vertical;">{{ old('rejection_note') }}</textarea>
+                  <div class="form-text mt-1" style="font-size: 12px; color: #9BA3AF;">Maksimal 1000 karakter</div>
+              </div>
+          </div>
+          <div class="modal-footer border-0 pt-0">
+            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal" style="border-radius: 6px;">Batal</button>
+            <button type="submit" class="btn btn-danger" style="border-radius: 6px;">Konfirmasi Tolak</button>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>
+
 @endsection

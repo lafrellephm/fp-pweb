@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\AdminOutgoingLetterController;
 use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserDispositionController;
 use App\Http\Controllers\User\UserOutgoingLetterController;
+use App\Http\Controllers\NotificationController;
 Route::get('/', function () {
     if (auth()->check()) {
         return match (auth()->user()->role) {
@@ -25,6 +26,7 @@ Route::middleware('auth')->group(function () {
         Route::get('/dashboard', [UserDashboardController::class, 'index'])->name('dashboard');
         Route::resource('/outgoing-letters', UserOutgoingLetterController::class)
              ->parameters(['outgoing-letters' => 'id']);
+        Route::get('/outgoing-letters/{id}/print', [UserOutgoingLetterController::class, 'print'])->name('outgoing-letters.print');
 
         // Dispositions
         Route::get('/dispositions', [UserDispositionController::class, 'index'])->name('dispositions.index');
@@ -46,6 +48,7 @@ Route::middleware('auth')->group(function () {
         Route::patch('/outgoing-letters/{id}/approve', [AdminOutgoingLetterController::class, 'approve'])->name('outgoing-letters.approve');
         Route::patch('/outgoing-letters/{id}/reject', [AdminOutgoingLetterController::class, 'reject'])->name('outgoing-letters.reject');
         Route::patch('/outgoing-letters/{id}/sent', [AdminOutgoingLetterController::class, 'markSent'])->name('outgoing-letters.sent');
+        Route::get('/outgoing-letters/{id}/print', [AdminOutgoingLetterController::class, 'print'])->name('outgoing-letters.print');
 
         // Dispositions
         Route::get('/dispositions', [AdminDispositionController::class, 'index'])->name('dispositions.index');
@@ -53,6 +56,10 @@ Route::middleware('auth')->group(function () {
         Route::post('/dispositions', [AdminDispositionController::class, 'store'])->name('dispositions.store');
         Route::delete('/dispositions/{id}', [AdminDispositionController::class, 'destroy'])->name('dispositions.destroy');
     });
+
+    // Shared notification routes
+    Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
+    Route::patch('/notifications/{id}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
 });
 
 require __DIR__.'/auth.php';

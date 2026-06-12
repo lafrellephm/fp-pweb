@@ -75,8 +75,19 @@ class UserOutgoingLetterController extends Controller
 
         OutgoingLetter::create($data);
 
+        if ($data['urgency'] === 'critical') {
+            $admin = \App\Models\User::where('role', 'admin')->first();
+            if ($admin) {
+                \App\Helpers\NotificationHelper::send(
+                    $admin,
+                    'Surat Kritis Masuk',
+                    'Surat dengan tingkat urgensi kritis telah diajukan oleh pengguna dan memerlukan perhatian segera.'
+                );
+            }
+        }
+
         return redirect()->route('user.outgoing-letters.index')
-                         ->with('success', 'Letter submitted successfully.');
+                         ->with('success', 'Surat berhasil diajukan.');
     }
 
     /**
@@ -149,7 +160,7 @@ class UserOutgoingLetterController extends Controller
         $letter->update($data);
 
         return redirect()->route('user.outgoing-letters.show', $letter->id)
-                         ->with('success', 'Letter updated successfully.');
+                         ->with('success', 'Surat berhasil diperbarui.');
     }
 
     /**
@@ -175,6 +186,32 @@ class UserOutgoingLetterController extends Controller
         $letter->delete();
 
         return redirect()->route('user.outgoing-letters.index')
-                         ->with('success', 'Letter deleted successfully.');
+                         ->with('success', 'Surat berhasil dihapus.');
+    }
+
+    /**
+     * Print the user's letter using the appropriate template.
+     */
+    public function print(string $id)
+    {
+        $letter = OutgoingLetter::with('approvedBy')->findOrFail($id);
+
+        if ($letter->created_by !== auth()->id()) {
+            abort(403);
+        }
+
+        if (!in_array($letter->status, ['approved', 'sent'])) {
+            abort(403);
+        }
+
+        $admin = $letter->approvedBy ?? \App\Models\User::where('role', 'admin')->first();
+
+        $template = match ($letter->letter_type) {
+            'recommendation'     => 'templates.surat_rekomendasi',
+            'active_certificate' => 'templates.surat_keterangan_aktif',
+            'assignment'         => 'templates.surat_tugas',
+        };
+
+        return view($template, compact('letter', 'admin'));
     }
 }

@@ -21,6 +21,7 @@ class UpdateOutgoingLetterRequest extends FormRequest
     {
         return [
             'letter_type'    => 'required|in:recommendation,active_certificate,assignment',
+            'urgency'        => 'required|in:normal,urgent,critical',
             'related_name'   => 'required|string|max:100',
             'purpose'        => 'required|string|max:255',
             'addressed_to'   => 'required|string|max:100',

@@ -1,5 +1,5 @@
 # Product Requirements Document (PRD)
-## Organisasi PWEB — Letter & Disposition Management System
+## Suratin— Letter & Disposition Management System
 
 **Version:** 1.0  
 **Date:** June 2026  
@@ -12,7 +12,7 @@
 ## 1. Project Overview
 
 ### 1.1 Background
-Organisasi PWEB currently manages incoming and outgoing correspondence manually, leading to inefficiencies in tracking, disposition, and archiving. This project aims to build a web-based Letter & Disposition Management System (Sistem Manajemen Surat) that digitalizes the entire correspondence workflow — from letter submission to archiving.
+Suratin currently manages incoming and outgoing correspondence manually, leading to inefficiencies in tracking, disposition, and archiving. This project aims to build a web-based Letter & Disposition Management System (Sistem Manajemen Surat) that digitalizes the entire correspondence workflow — from letter submission to archiving.
 
 ### 1.2 Objectives
 - Digitalize the incoming and outgoing letter management process
@@ -129,7 +129,7 @@ This system covers three primary actors: **User** (general member), **Admin** (s
 | ID | Requirement |
 |---|---|
 | TPL-01 | Three separate Blade templates for: Surat Rekomendasi, Surat Keterangan Aktif, Surat Tugas |
-| TPL-02 | Each template auto-populates: organization letterhead (Organisasi PWEB), `nomor_surat`, `tanggal_surat`, recipient, body content from DB fields, and admin name as signatory |
+| TPL-02 | Each template auto-populates: organization letterhead (Suratin), `nomor_surat`, `tanggal_surat`, recipient, body content from DB fields, and admin name as signatory |
 | TPL-03 | Print is triggered via `window.print()`; print button is hidden in `@media print` CSS |
 | TPL-04 | Template selection is automatic based on `jenis_surat` field using a `match()` expression |
 
@@ -323,7 +323,7 @@ The following accounts will be created via `DatabaseSeeder.php`:
 // Admin account
 [
     'name'     => 'Admin',
-    'email'    => 'admin@organisasipweb.com',
+    'email'    => 'admin@mail.com',
     'password' => bcrypt('admin'),
     'role'     => 'admin',
 ]

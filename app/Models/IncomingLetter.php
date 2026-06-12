@@ -19,6 +19,7 @@ class IncomingLetter extends Model
         'subject',
         'file_path',
         'status',
+        'urgency',
         'created_by',
     ];
 

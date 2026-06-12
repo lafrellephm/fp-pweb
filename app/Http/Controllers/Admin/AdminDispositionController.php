@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreDispositionRequest;
 use App\Models\Disposition;
 use App\Models\IncomingLetter;
 use App\Models\Notification;
@@ -53,13 +54,9 @@ class AdminDispositionController extends Controller
     /**
      * Store a newly created disposition.
      */
-    public function store(Request $request)
+    public function store(StoreDispositionRequest $request)
     {
-        $validated = $request->validate([
-            'incoming_letter_id' => 'required|exists:incoming_letters,id',
-            'assigned_to'        => 'required|exists:users,id',
-            'instructions'       => 'required|string|max:2000',
-        ]);
+        $validated = $request->validated();
 
         $validated['assigned_by'] = auth()->id();
         $validated['status'] = 'unread';
@@ -71,12 +68,14 @@ class AdminDispositionController extends Controller
         $incomingLetter->update(['status' => 'assigned']);
 
         // Create notification for the assigned user
-        Notification::create([
-            'user_id' => $validated['assigned_to'],
-            'title'   => 'Disposisi Baru',
-            'message' => 'Anda mendapat disposisi baru untuk surat: ' . $incomingLetter->subject,
-            'is_read' => false,
-        ]);
+        $user = User::find($validated['assigned_to']);
+        if ($user) {
+            \App\Helpers\NotificationHelper::send(
+                $user,
+                'Disposisi Baru',
+                'Anda mendapat disposisi baru untuk surat: ' . $incomingLetter->subject
+            );
+        }
 
         return redirect()->route('admin.dispositions.index')
                          ->with('success', 'Disposisi berhasil dibuat.');

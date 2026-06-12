@@ -25,12 +25,24 @@ class UserDashboardController extends Controller
         $recentLetters = OutgoingLetter::where('created_by', $userId)
                             ->latest()->take(5)->get();
 
+        // Check for unread approval/rejection notification for popup
+        $popupNotification = auth()->user()->notifications()
+                            ->where('is_read', false)
+                            ->whereIn('title', ['Surat Disetujui', 'Surat Ditolak'])
+                            ->latest()
+                            ->first();
+        
+        if ($popupNotification) {
+            $popupNotification->update(['is_read' => true]);
+        }
+
         return view('user.dashboard', compact(
             'totalLetters',
             'draftCount',
             'pendingCount',
             'approvedCount',
-            'recentLetters'
+            'recentLetters',
+            'popupNotification'
         ));
     }
 }

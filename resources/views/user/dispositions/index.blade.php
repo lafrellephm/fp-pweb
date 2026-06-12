@@ -9,16 +9,10 @@
     <div class="d-flex align-items-center justify-content-between mb-4 mt-3">
         <div>
             <h2>Disposisi Saya</h2>
-            <p style="font-size: 14px; color: #6A7380; margin: 0;">Daftar disposisi yang ditugaskan kepada Anda.</p>
+            <p class="m-0" style="font-size: 14px; color: #6A7380; ">Daftar disposisi yang ditugaskan kepada Anda.</p>
         </div>
     </div>
 
-    @if(session('success'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert" style="border-radius: 8px;">
-            {{ session('success') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
 
     <!-- Data Table -->
     <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
@@ -43,11 +37,11 @@
                             <td>{{ Str::limit($disposition->instructions, 40) }}</td>
                             <td>
                                 @if($disposition->status === 'unread')
-                                    <span class="status-badge" style="background-color: #FEF3C7; color: #D97706;">Belum Dibaca</span>
+                                    <span class="status-badge status-belum_dibaca">Belum Dibaca</span>
                                 @elseif($disposition->status === 'read')
-                                    <span class="status-badge" style="background-color: #DBEAFE; color: #2563EB;">Dibaca</span>
+                                    <span class="status-badge status-dibaca">Dibaca</span>
                                 @elseif($disposition->status === 'completed')
-                                    <span class="status-badge" style="background-color: #D1FAE5; color: #059669;">Selesai</span>
+                                    <span class="status-badge status-selesai">Selesai</span>
                                 @endif
                             </td>
                             <td>{{ $disposition->reply_note ? Str::limit($disposition->reply_note, 40) : '-' }}</td>
