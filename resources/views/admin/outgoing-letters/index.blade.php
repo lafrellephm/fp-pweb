@@ -16,17 +16,20 @@
     <ul class="nav nav-tabs mb-0" id="outgoingLetterTabs" role="tablist" style="border-bottom: 2px solid #E0E3E8;">
         <li class="nav-item" role="presentation">
             <button class="nav-link active" id="submissions-tab" data-bs-toggle="tab" data-bs-target="#submissions-pane" type="button" role="tab" aria-controls="submissions-pane" aria-selected="true" style="font-size: 14px; font-weight: 500; border-radius: 6px 6px 0 0;">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1">
-                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
-                    <polyline points="14 2 14 8 20 8"></polyline>
-                </svg>
-                Submissions
-                @php
-                    $submissionsCount = $letters->filter(fn($l) => in_array($l->status, ['draft', 'pending_approval', 'rejected']))->count();
-                @endphp
-                @if($submissionsCount > 0)
-                    <span class="badge ms-1" style="background-color: #066FD1; color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 9999px;">{{ $submissionsCount }}</span>
-                @endif
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                    </svg>
+
+                    Dalam Proses
+                    <div class="mt-2">
+                        @php
+                            $submissionsCount = $letters->filter(fn($l) => in_array($l->status, ['draft', 'pending_approval', 'rejected']))->count();
+                        @endphp
+                        @if($submissionsCount > 0)
+                            <span class="badge ms-1" style="background-color: #066FD1; color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 9999px;">{{ $submissionsCount }}</span>
+                        @endif
+                    </div>
             </button>
         </li>
         <li class="nav-item" role="presentation">
@@ -37,12 +40,14 @@
                     <line x1="10" y1="12" x2="14" y2="12"></line>
                 </svg>
                 Archive
-                @php
-                    $archiveCount = $letters->filter(fn($l) => in_array($l->status, ['approved', 'sent']))->count();
-                @endphp
-                @if($archiveCount > 0)
-                    <span class="badge ms-1" style="background-color: #059669; color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 9999px;">{{ $archiveCount }}</span>
-                @endif
+                <div class="mt-2">
+                    @php
+                        $archiveCount = $letters->filter(fn($l) => in_array($l->status, ['approved', 'sent']))->count();
+                    @endphp
+                    @if($archiveCount > 0)
+                        <span class="badge ms-1" style="background-color: #059669; color: #fff; font-size: 11px; padding: 2px 7px; border-radius: 9999px;">{{ $archiveCount }}</span>
+                    @endif
+                </div>
             </button>
         </li>
     </ul>
@@ -149,9 +154,9 @@
                                             @if($letter->status === 'draft')
                                                 <a href="{{ route('admin.outgoing-letters.process', $letter->id) }}" class="btn btn-sm btn-primary" style="border-radius: 6px;">Proses</a>
                                             @elseif($letter->status === 'pending_approval')
-                                                <a href="{{ route('admin.outgoing-letters.show', $letter->id) }}" class="btn btn-sm btn-outline-info" style="border-radius: 6px;">Lihat</a>
+                                                <a href="{{ route('admin.outgoing-letters.show', $letter->id) }}" class="btn btn-sm btn-warning" style="border-radius: 6px;">Lihat</a>
                                             @elseif($letter->status === 'rejected')
-                                                <a href="{{ route('admin.outgoing-letters.show', $letter->id) }}" class="btn btn-sm btn-outline-info" style="border-radius: 6px;">Lihat</a>
+                                                <a href="{{ route('admin.outgoing-letters.show', $letter->id) }}" class="btn btn-sm btn-warning" style="border-radius: 6px;">Lihat</a>
                                             @endif
                                         </div>
                                     </td>
@@ -280,7 +285,7 @@
                                                         <rect x="6" y="14" width="12" height="8"></rect>
                                                     </svg>Cetak</a>
                                             @elseif($letter->status === 'sent')
-                                                <a href="{{ route('admin.outgoing-letters.show', $letter->id) }}" class="btn btn-sm btn-outline-info" style="border-radius: 6px;">Lihat</a>
+                                                <a href="{{ route('admin.outgoing-letters.show', $letter->id) }}" class="btn btn-sm btn-warning" style="border-radius: 6px;">Lihat</a>
                                                 <a href="{{ route('admin.outgoing-letters.show', $letter->id) }}" class="btn btn-sm btn-outline-info" style="border-radius: 6px;">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1">
                                                         <polyline points="6 9 6 2 18 2 18 9"></polyline>

@@ -9,6 +9,7 @@ use App\Http\Controllers\User\UserDashboardController;
 use App\Http\Controllers\User\UserDispositionController;
 use App\Http\Controllers\User\UserOutgoingLetterController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\AboutController;
 Route::get('/', function () {
     if (auth()->check()) {
         return match (auth()->user()->role) {
@@ -60,6 +61,9 @@ Route::middleware('auth')->group(function () {
     // Shared notification routes
     Route::get('/notifications', [NotificationController::class, 'index'])->name('notifications.index');
     Route::patch('/notifications/{id}/read', [NotificationController::class, 'markRead'])->name('notifications.read');
+
+    // Shared about route
+    Route::get('/about', [AboutController::class, 'index'])->name('about');
 });
 
 require __DIR__.'/auth.php';

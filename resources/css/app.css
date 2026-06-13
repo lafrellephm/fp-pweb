@@ -145,6 +145,9 @@ h4,
     font-weight: 500;
     padding: 4px 8px;
     border-radius: 6px;
+    display: block;
+    width: 100%;
+    text-align: center;
 }
 
 .badge-danger,
@@ -349,6 +352,41 @@ h4,
     box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 15px -3px, rgba(0, 0, 0, 0.02) 0px 4px 6px -2px;
 }
 
+.btn-warning {
+    background-color: var(--bs-warning);
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 0 11px;
+    border-radius: 6px;
+    border: 1px solid rgba(234, 179, 8, 0.12);
+    height: 40px;
+    line-height: 14px;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 15px -3px, rgba(0, 0, 0, 0.02) 0px 4px 6px -2px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+}
+
+.btn-warning.disabled,
+.btn-warning:disabled {
+    background-color: var(--bs-warning);
+    opacity: 0.5;
+    box-shadow: none;
+}
+
+.btn-warning:active {
+    background-color: #CA8A04;
+    box-shadow: rgba(0, 0, 0, 0.08) 0px 10px 15px -3px;
+}
+
+.btn-warning:hover {
+    background-color: #CA8A04;
+    color: #FFFFFF;
+    box-shadow: rgba(0, 0, 0, 0.04) 0px 10px 15px -3px, rgba(0, 0, 0, 0.02) 0px 4px 6px -2px;
+}
+
 .btn-secondary,
 .btn-outline-primary {
     background-color: #A8B5C8;
@@ -387,6 +425,18 @@ h4,
     background-color: #4E5967;
     color: #fff;
     border-color: rgba(1, 61, 209, 0.2);
+}
+
+.table .btn-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.table .btn {
+    display: flex;
+    width: 100%;
+    margin: 0;
 }
 
 .card {
@@ -818,7 +868,9 @@ h4,
     padding: 4px 10px;
     border-radius: 6px;
     border: none;
-    display: inline-block;
+    display: block;
+    width: 100%;
+    text-align: center;
 }
 
 .status-disetujui,

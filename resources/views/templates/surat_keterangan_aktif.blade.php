@@ -223,7 +223,7 @@
                 Surabaya, {{ $letter->letter_date ? $letter->letter_date->translatedFormat('d F Y') : now()->translatedFormat('d F Y') }}
             </div>
             <div class="role">Admin Organisasi PWEB</div>
-            <div class="name">{{ $admin->name ?? 'Administrator' }}</div>
+            <div class="name">{{ $admin->name ?? 'Kepala Organisasi/Departemen' }}</div>
         </div>
 
         {{-- Print Button --}}

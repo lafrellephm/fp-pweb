@@ -76,7 +76,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="letter_body" class="form-label" >Keperluan Surat<span class="text-danger">*</span></label>
+                        <label for="letter_body" class="form-label" >Isi/Keterangan Tambahan<span class="text-danger">*</span></label>
                         <textarea name="letter_body" id="letter_body" class="form-control @error('letter_body') is-invalid @enderror" rows="5" required>{{ old('letter_body') }}</textarea>
                         @error('letter_body')
                             <div class="invalid-feedback">{{ $message }}</div>
@@ -95,7 +95,7 @@
 
                 {{-- Section 3: Surat Tugas Fields (conditionally visible) --}}
                 <div id="assignment-fields" class="mb-4 pb-3" style="border-bottom: 1px solid #f1f3f8; display: none;">
-                    <h3 >Detail Penugasan</h3>
+                    <h4 >Detail Penugasan</h4>
 
                     <div class="row mb-3">
                         <div class="col-md-6">

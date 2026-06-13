@@ -49,6 +49,14 @@
             <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
             <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
         </svg>Pengguna</a> -->
+
+    <div class="sidebar-nav-label mt-4">Informasi</div>
+    <a href="/about" class="sidebar-nav-item {{ request()->is('about') ? 'active' : '' }}">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
+        </svg>Tentang Kami</a>
 @endsection
 
 @section('notification-bell')

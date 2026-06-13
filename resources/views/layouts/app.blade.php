@@ -21,7 +21,7 @@
     <div class="sidebar-overlay" id="sidebarOverlay" onclick="toggleSidebar()"></div>
 
     <!-- Sidebar --> 
-    <aside class="sidebar" id="sidebar">
+    <aside class="sidebar" id="sidebar" style="background-image: url(&quot;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cpath d='M30 0L60 30L30 60L0 30Z' fill='%23ffffff' fill-opacity='0.015' /%3E%3Cpath d='M0 0L30 30L0 60Z' fill='%23ffffff' fill-opacity='0.005' /%3E%3Cpath d='M60 0L30 30L60 60Z' fill='%23ffffff' fill-opacity='0.005' /%3E%3C/svg%3E&quot;);">
         <div class="sidebar-brand">
             <a href="/" class="sidebar-brand-logo">
                 <div class="sidebar-brand-icon">

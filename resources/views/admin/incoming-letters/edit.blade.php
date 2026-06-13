@@ -99,7 +99,7 @@
                     
                     @if($letter->file_path)
                         <div class="mt-2">
-                            <a href="{{ asset('storage/' . $letter->file_path) }}" target="_blank" class="btn btn-sm btn-outline-info" style="border-radius: 6px;">
+                            <a href="{{ asset('storage/' . $letter->file_path) }}" target="_blank" class="btn btn-sm btn-warning" style="border-radius: 6px;">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1">
                                     <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
                                     <polyline points="14 2 14 8 20 8"></polyline>

@@ -43,7 +43,7 @@ class NotificationMail extends Mailable
             view: 'emails.notification',
             with: [
                 'title' => $this->title,
-                'message' => $this->messageContent,
+                'bodyMessage' => $this->messageContent,
             ],
         );
     }
