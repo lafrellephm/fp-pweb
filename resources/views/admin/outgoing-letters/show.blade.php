@@ -40,22 +40,12 @@
     <div class="row">
         <!-- Detail Surat -->
         <div class="col-lg-8 mb-4">
-            <div class="card">
+            <div class="card card-custom">
                 <div class="card-header bg-white p4" style="border-bottom: 1px solid #f1f3f8; ">
                     <div class="d-flex justify-content-between py-2 m-2">
                         <h3>Informasi Surat</h3>
                         <div>
-                            @if($letter->status === 'draft')
-                                <span class="status-badge status-draft">Draf</span>
-                            @elseif($letter->status === 'pending_approval')
-                                <span class="status-badge status-menunggu_approval">Menunggu Persetujuan</span>
-                            @elseif($letter->status === 'approved')
-                                <span class="status-badge status-disetujui">Disetujui</span>
-                            @elseif($letter->status === 'rejected')
-                                <span class="status-badge status-ditolak">Ditolak</span>
-                            @elseif($letter->status === 'sent')
-                                <span class="status-badge status-terkirim">Terkirim</span>
-                            @endif
+                            <x-status-badge :status="$letter->status" />
                         </div>
                     </div>
                 </div>
@@ -63,9 +53,9 @@
                     <div class="row mb-4">
                         <div class="col-sm-4 text-muted" style="font-weight: 500; font-size: 14px;">Diajukan Oleh</div>
                         <div class="col-sm-8">
-                            <span style="font-weight: 600; color: #1A2744;">{{ $letter->submittedBy->name ?? '-' }}</span>
-                            @if($letter->submittedBy)
-                                <br><span style="font-size: 13px; color: #6A7380;">{{ $letter->submittedBy->email }}</span>
+                            <span style="font-weight: 600; color: #1A2744;">{{ $letter->createdBy->name ?? '-' }}</span>
+                            @if($letter->createdBy)
+                                <br><span style="font-size: 13px; color: #6A7380;">{{ $letter->createdBy->email }}</span>
                             @endif
                         </div>
                     </div>
@@ -164,7 +154,7 @@
 
         <!-- Aksi Panel -->
         <div class="col-lg-4 mb-4">
-            <div class="card">
+            <div class="card card-custom">
                 <div class="card-header bg-white p-4" style="border-bottom: 1px solid #f1f3f8; ">
                     <h3 >Persetujuan Surat</h3>
                 </div>

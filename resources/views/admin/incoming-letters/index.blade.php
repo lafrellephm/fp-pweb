@@ -19,7 +19,7 @@
     </div>
 
     <!-- Cari & Filter Bar -->
-    <div class="card mb-4 p-4" style="border-radius: 12px;  border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+    <div class="card card-custom mb-4 p-4">
         <form action="{{ route('admin.incoming-letters.index') }}" method="GET" class="row g-3 align-items-end">
             <div class="col-md-4">
                 <label for="search" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Cari Keyword</label>
@@ -52,7 +52,7 @@
     </div>
 
     <!-- Data Table -->
-    <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
+    <div class="card card-custom">
         <div class="table-responsive">
             <table class="table table-vcenter table-nowrap mb-0">
                 <thead style="background-color: #F8FAFC;">
@@ -86,22 +86,10 @@
                             </td>
                             <td>{{ $letter->received_date->format('d M Y') }}</td>
                             <td>
-                                @if($letter->status === 'unassigned')
-                                    <span class="status-badge status-belum_disposisi">Belum diproses</span>
-                                @elseif($letter->status === 'assigned')
-                                    <span class="status-badge status-sudah_disposisi">Menunggu diproses</span>
-                                @elseif($letter->status === 'completed')
-                                    <span class="status-badge status-selesai">Selesai</span>
-                                @endif
+                                <x-status-badge :status="$letter->status" />
                             </td>
                             <td>
-                                @if($letter->urgency === 'critical')
-                                    <span class="badge bg-danger">Kritis</span>
-                                @elseif($letter->urgency === 'urgent')
-                                    <span class="badge bg-warning text-dark">Mendesak</span>
-                                @else
-                                    <span class="badge bg-secondary">Normal</span>
-                                @endif
+                                <x-urgency-badge :urgency="$letter->urgency" />
                             </td>
                             <td>
                                 <div class="d-flex align-items-center gap-2">
@@ -116,15 +104,7 @@
                             </td>
                         </tr>
                     @empty
-                        <tr>
-                            <td colspan="8" class="text-center py-5 text-muted">
-                                @if(request()->hasAny(['search', 'status', 'type']))
-                                    No incoming letters found matching your search.
-                                @else
-                                    No incoming letters found.
-                                @endif
-                            </td>
-                        </tr>
+                        <x-empty-state colspan="9" message="No incoming letters found." />
                     @endforelse
                 </tbody>
             </table>

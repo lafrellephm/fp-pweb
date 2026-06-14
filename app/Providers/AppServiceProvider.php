@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
+use App\Models\OutgoingLetter;
+use App\Observers\OutgoingLetterObserver;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,5 +27,7 @@ class AppServiceProvider extends ServiceProvider
         Password::defaults(function () {
             return Password::min(1);
         });
+
+        OutgoingLetter::observe(OutgoingLetterObserver::class);
     }
 }

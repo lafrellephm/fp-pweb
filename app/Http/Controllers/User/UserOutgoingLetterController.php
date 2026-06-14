@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreOutgoingLetterRequest;
-use App\Http\Requests\UpdateOutgoingLetterRequest;
+use App\Http\Requests\LetterFormRequest;
 use App\Models\OutgoingLetter;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -51,7 +50,7 @@ class UserOutgoingLetterController extends Controller
     /**
      * Store a newly created outgoing letter.
      */
-    public function store(StoreOutgoingLetterRequest $request)
+    public function store(LetterFormRequest $request)
     {
         $data = $request->validated();
 
@@ -74,17 +73,6 @@ class UserOutgoingLetterController extends Controller
         }
 
         OutgoingLetter::create($data);
-
-        if ($data['urgency'] === 'critical') {
-            $admin = \App\Models\User::where('role', 'admin')->first();
-            if ($admin) {
-                \App\Helpers\NotificationHelper::send(
-                    $admin,
-                    'Surat Kritis Masuk',
-                    'Surat dengan tingkat urgensi kritis telah diajukan oleh pengguna dan memerlukan perhatian segera.'
-                );
-            }
-        }
 
         return redirect()->route('user.outgoing-letters.index')
                          ->with('success', 'Surat berhasil diajukan.');
@@ -125,7 +113,7 @@ class UserOutgoingLetterController extends Controller
     /**
      * Update the specified outgoing letter.
      */
-    public function update(UpdateOutgoingLetterRequest $request, string $id)
+    public function update(LetterFormRequest $request, string $id)
     {
         $letter = OutgoingLetter::findOrFail($id);
 

@@ -5,9 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Traits\HasCreator;
 
 class IncomingLetter extends Model
 {
+    use HasCreator;
     protected $table = 'incoming_letters';
 
     protected $fillable = [
@@ -31,19 +33,12 @@ class IncomingLetter extends Model
         ];
     }
 
-    /**
-     * Dispositions for this incoming letter.
-     */
-    public function dispositions(): HasMany
-    {
-        return $this->hasMany(Disposition::class, 'incoming_letter_id');
-    }
 
     /**
-     * Admin who created this record.
+     * Scope a query to sort by urgency (critical > urgent > normal).
      */
-    public function createdBy(): BelongsTo
+    public function scopeSortByUrgency($query)
     {
-        return $this->belongsTo(User::class, 'created_by');
+        return $query->orderByRaw("CASE urgency WHEN 'critical' THEN 1 WHEN 'urgent' THEN 2 WHEN 'normal' THEN 3 ELSE 4 END");
     }
 }

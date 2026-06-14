@@ -3,8 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreIncomingLetterRequest;
-use App\Http\Requests\UpdateIncomingLetterRequest;
+use App\Http\Requests\LetterFormRequest;
 use App\Http\Requests\UpdateIncomingLetterStatusRequest;
 use App\Models\IncomingLetter;
 use Illuminate\Http\Request;
@@ -36,7 +35,7 @@ class AdminIncomingLetterController extends Controller
             $query->where('letter_type', $request->type);
         }
 
-        $letters = $query->orderByRaw("CASE urgency WHEN 'critical' THEN 1 WHEN 'urgent' THEN 2 WHEN 'normal' THEN 3 END")
+        $letters = $query->sortByUrgency()
                          ->orderBy('received_date', 'asc')
                          ->paginate(10)->withQueryString();
 
@@ -54,7 +53,7 @@ class AdminIncomingLetterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreIncomingLetterRequest $request)
+    public function store(LetterFormRequest $request)
     {
         $validated = $request->validated();
 
@@ -76,7 +75,7 @@ class AdminIncomingLetterController extends Controller
      */
     public function show(string $id)
     {
-        $letter = IncomingLetter::with(['dispositions.assignedTo', 'createdBy'])->findOrFail($id);
+        $letter = IncomingLetter::with(['createdBy'])->findOrFail($id);
         
         return view('admin.incoming-letters.show', compact('letter'));
     }
@@ -93,7 +92,7 @@ class AdminIncomingLetterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateIncomingLetterRequest $request, string $id)
+    public function update(LetterFormRequest $request, string $id)
     {
         $letter = IncomingLetter::findOrFail($id);
 

@@ -10,7 +10,7 @@
 
     <div class="row g-4">
         <div class="col-12 col-lg-8">
-            <div class="card h-100" style="border-radius: 12px; border: 1px solid rgba(1, 61, 209, 0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <div class="card card-custom h-100">
                 <div class="card-body p-5">
                     <h3 class="mb-3" style="color: #1A2744; font-weight: 700;">Visi & Misi</h3>
                     <div class="mb-4">
@@ -80,7 +80,7 @@
         </div>
 
         <div class="col-12 col-lg-4">
-            <div class="card h-100" style="border-radius: 12px; border: 1px solid rgba(1, 61, 209, 0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); background-color: #1A2744; color: #FFFFFF;">
+            <div class="card card-custom h-100" style="background-color: #1A2744; color: #FFFFFF;">
                 <div class="card-body p-5 d-flex flex-column justify-content-center align-items-center text-center relative overflow-hidden">
                     <svg style="position: absolute; right: -20%; bottom: -20%; opacity: 0.05;" width="300" height="300" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>

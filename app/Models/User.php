@@ -57,35 +57,11 @@ class User extends Authenticatable
     }
 
     /**
-     * Outgoing letters approved by this user (pimpinan).
-     */
-    public function approvedLetters(): HasMany
-    {
-        return $this->hasMany(OutgoingLetter::class, 'approved_by');
-    }
-
-    /**
      * Incoming letters created by this user (admin).
      */
     public function incomingLetters(): HasMany
     {
         return $this->hasMany(IncomingLetter::class, 'created_by');
-    }
-
-    /**
-     * Dispositions assigned to this user.
-     */
-    public function receivedDispositions(): HasMany
-    {
-        return $this->hasMany(Disposition::class, 'assigned_to');
-    }
-
-    /**
-     * Dispositions created by this user (admin).
-     */
-    public function createdDispositions(): HasMany
-    {
-        return $this->hasMany(Disposition::class, 'assigned_by');
     }
 
     /**

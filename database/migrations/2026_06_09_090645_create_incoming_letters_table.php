@@ -20,7 +20,7 @@ return new class extends Migration
             $table->enum('letter_type', ['invitation', 'announcement']);
             $table->string('subject', 255);
             $table->string('file_path')->nullable();
-            $table->enum('status', ['unassigned', 'assigned', 'completed'])->default('unassigned');
+            $table->enum('status', ['received', 'completed'])->default('received');
             $table->foreignId('created_by')->constrained('users');
             $table->timestamps();
         });
