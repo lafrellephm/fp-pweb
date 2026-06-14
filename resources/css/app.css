@@ -999,3 +999,17 @@ textarea.form-control {
         display: none;
     }
 }
+.card-custom {
+    border-radius: 12px;
+    border: 1px solid rgba(1,61,209,0.12);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    background: #FFFFFF;
+    padding: 32px;
+}
+.card-form {
+    max-width: 800px;
+}
+.card-tabs {
+    border-radius: 0 12px 12px 12px;
+    border-top: none;
+}

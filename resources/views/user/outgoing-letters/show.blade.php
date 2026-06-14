@@ -27,17 +27,7 @@
             <div class="d-flex align-items-center justify-content-between">
                 <h4>Informasi Surat</h4>
                 <div>
-                    @if($letter->status === 'draft')
-                        <span class="status-badge status-draft">Draf</span>
-                    @elseif($letter->status === 'pending_approval')
-                        <span class="status-badge status-menunggu_approval">Menunggu Persetujuan</span>
-                    @elseif($letter->status === 'approved')
-                        <span class="status-badge status-disetujui">Disetujui</span>
-                    @elseif($letter->status === 'rejected')
-                        <span class="status-badge status-ditolak">Ditolak</span>
-                    @elseif($letter->status === 'sent')
-                        <span class="status-badge status-terkirim">Terkirim</span>
-                    @endif
+                    <x-status-badge :status="$letter->status" />
                 </div>
             </div>
         </div>

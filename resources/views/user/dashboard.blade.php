@@ -12,7 +12,7 @@
     <div class="row g-3 mb-4">
         {{-- Card 1: Total Submitted --}}
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="p-4" style="background: #FFFFFF; border-radius: 12px;  border: 1px solid rgba(1, 61, 209, 0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); height: 100%;">
+            <div class="p-4 card-custom" style="background: #FFFFFF; height: 100%;">
                 <div class="d-flex align-items-center">
                     <div class="d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px; border-radius: 8px; background-color: rgba(6,111,209,0.1); color: #066FD1;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -32,7 +32,7 @@
 
         {{-- Card 2: Drafts --}}
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="p-4" style="background: #FFFFFF; border-radius: 12px;  border: 1px solid rgba(1, 61, 209, 0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); height: 100%;">
+            <div class="p-4 card-custom" style="background: #FFFFFF; height: 100%;">
                 <div class="d-flex align-items-center">
                     <div class="d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px; border-radius: 8px; background-color: rgba(78,89,103,0.1); color: #4E5967;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -50,7 +50,7 @@
 
         {{-- Card 3: Menunggu Persetujuan --}}
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="p-4" style="background: #FFFFFF; border-radius: 12px;  border: 1px solid rgba(1, 61, 209, 0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); height: 100%;">
+            <div class="p-4 card-custom" style="background: #FFFFFF; height: 100%;">
                 <div class="d-flex align-items-center">
                     <div class="d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px; border-radius: 8px; background-color: rgba(217,119,6,0.1); color: #D97706;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -68,7 +68,7 @@
 
         {{-- Card 4: Approved / Sent --}}
         <div class="col-12 col-md-6 col-lg-3">
-            <div class="p-4" style="background: #FFFFFF; border-radius: 12px;  border: 1px solid rgba(1, 61, 209, 0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); height: 100%;">
+            <div class="p-4 card-custom" style="background: #FFFFFF; height: 100%;">
                 <div class="d-flex align-items-center">
                     <div class="d-flex align-items-center justify-content-center me-3" style="width: 48px; height: 48px; border-radius: 8px; background-color: rgba(5,150,105,0.1); color: #059669;">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -85,7 +85,7 @@
     </div>
 
     {{-- Recent Surat Section --}}
-    <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
+    <div class="card card-custom">
         <div class=" py-3" style="border-bottom: 1px solid #f1f3f8; ">
             <h4>Surat Terbaru</h4>
         </div>
@@ -113,24 +113,12 @@
                                 @endif
                             </td>
                             <td>
-                                @if($letter->status === 'draft')
-                                    <span class="status-badge status-draft">Draf</span>
-                                @elseif($letter->status === 'pending_approval')
-                                    <span class="status-badge status-menunggu_approval">Menunggu Persetujuan</span>
-                                @elseif($letter->status === 'approved')
-                                    <span class="status-badge status-disetujui">Disetujui</span>
-                                @elseif($letter->status === 'rejected')
-                                    <span class="status-badge status-ditolak">Ditolak</span>
-                                @elseif($letter->status === 'sent')
-                                    <span class="status-badge status-terkirim">Terkirim</span>
-                                @endif
+                                <x-status-badge :status="$letter->status" />
                             </td>
                             <td class="text-muted">{{ $letter->created_at->format('d M Y') }}</td>
                         </tr>
                     @empty
-                        <tr>
-                            <td colspan="4" class="text-center py-5 text-muted">Anda belum mengajukan surat apapun.</td>
-                        </tr>
+                        <x-empty-state colspan="4" message="Anda belum mengajukan surat apapun." />
                     @endforelse
                 </tbody>
             </table>

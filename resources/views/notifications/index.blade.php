@@ -1,4 +1,4 @@
-@extends(auth()->user()->role === 'admin' ? 'layouts.admin' : (auth()->user()->role === 'pimpinan' ? 'layouts.pimpinan' : 'layouts.user'))
+@extends(auth()->user()->role === 'admin' ? 'layouts.admin' : 'layouts.user')
 
 @section('page-title', 'Notifikasi')
 @section('title', 'Notifikasi')
@@ -38,7 +38,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="mt-4">
+        <div class="row">
             {{ $notifications->links() }}
         </div>
     @endif

@@ -17,7 +17,7 @@
     </div>
 
     {{-- Cari & Filter Bar --}}
-    <div class="card mb-4 p-4\" style="border-radius: 12px;  border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+    <div class="card card-custom mb-4 p-4">
         <form action="{{ route('user.outgoing-letters.index') }}" method="GET" class="row g-3 align-items-end">
             <div class="col-md-3">
                 <label for="search" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Cari Keyword</label>
@@ -53,7 +53,7 @@
     </div>
 
     {{-- Data Table --}}
-    <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
+    <div class="card card-custom">
         <div class="table-responsive">
             <table class="table table-vcenter table-nowrap mb-0">
                 <thead style="background-color: #F8FAFC;">
@@ -84,26 +84,10 @@
                                 @endif
                             </td>
                             <td>
-                                @if($letter->status === 'draft')
-                                    <span class="status-badge status-draft">Draf</span>
-                                @elseif($letter->status === 'pending_approval')
-                                    <span class="status-badge status-menunggu_approval">Menunggu Persetujuan</span>
-                                @elseif($letter->status === 'approved')
-                                    <span class="status-badge status-disetujui">Disetujui</span>
-                                @elseif($letter->status === 'rejected')
-                                    <span class="status-badge status-ditolak">Ditolak</span>
-                                @elseif($letter->status === 'sent')
-                                    <span class="status-badge status-terkirim">Terkirim</span>
-                                @endif
+                                <x-status-badge :status="$letter->status" />
                             </td>
                             <td>
-                                @if($letter->urgency === 'critical')
-                                    <span class="badge bg-danger">Kritis</span>
-                                @elseif($letter->urgency === 'urgent')
-                                    <span class="badge bg-warning text-dark">Mendesak</span>
-                                @else
-                                    <span class="badge bg-secondary">Normal</span>
-                                @endif
+                                <x-urgency-badge :urgency="$letter->urgency" />
                             </td>
                             <td class="text-muted">{{ $letter->created_at->format('d M Y') }}</td>
                             <td>
@@ -121,15 +105,7 @@
                             </td>
                         </tr>
                     @empty
-                        <tr>
-                            <td colspan="7" class="text-center py-5 text-muted">
-                                @if(request()->hasAny(['search', 'status', 'type']))
-                                    No letters found matching your search.
-                                @else
-                                    You have not submitted any letters yet.
-                                @endif
-                            </td>
-                        </tr>
+                        <x-empty-state colspan="8" message="You have not submitted any letters yet." />
                     @endforelse
                 </tbody>
             </table>

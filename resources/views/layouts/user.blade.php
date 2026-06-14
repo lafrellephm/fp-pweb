@@ -26,11 +26,7 @@
             <line x1="16" y1="17" x2="8" y2="17"></line>
         </svg>Surat Saya</a>
 
-    {{-- <a href="/user/dispositions" class="sidebar-nav-item {{ request()->is('user/dispositions*') ? 'active' : '' }}">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
-            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
-        </svg>Disposisi Saya</a> --}}
+    {{--  --}}
 
     <div class="sidebar-nav-label mt-4">Informasi</div>
     <a href="/about" class="sidebar-nav-item {{ request()->is('about') ? 'active' : '' }}">

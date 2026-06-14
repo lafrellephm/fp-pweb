@@ -17,7 +17,7 @@
             Back to Letters
         </a>
     </div>
-    <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); max-width: 800px;">
+    <div class="card card-custom card-form">
         <div class="card-body p-4 p-md-5\">
             <form action="{{ route('admin.incoming-letters.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf

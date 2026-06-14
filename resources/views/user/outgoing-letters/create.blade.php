@@ -16,7 +16,7 @@
             </svg>Kembali ke Surat Saya</a>
     </div>
 
-    <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); max-width: 800px;">
+    <div class="card card-custom card-form">
         <div class="card-body p-4 p-md-5\">
             <form action="{{ route('user.outgoing-letters.store') }}" method="POST" enctype="multipart/form-data">
                 @csrf
@@ -132,22 +132,7 @@
         </div>
     </div>
 </div>
+
+<script src="{{ asset('js/assignment-toggle.js') }}"></script>
 @endsection
 
-@push('scripts')
-<script>
-    const letterType = document.getElementById('letter_type');
-    const assignmentFields = document.getElementById('assignment-fields');
-
-    function toggleAssignmentFields() {
-        if (letterType.value === 'assignment') {
-            assignmentFields.style.display = 'block';
-        } else {
-            assignmentFields.style.display = 'none';
-        }
-    }
-
-    letterType.addEventListener('change', toggleAssignmentFields);
-    toggleAssignmentFields(); // run on page load
-</script>
-@endpush

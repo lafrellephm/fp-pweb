@@ -23,18 +23,11 @@
     <div class="row">
         <!-- Detail Surat -->
         <div class="col-lg-8 mb-4">
-            <div class="card h-100" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <div class="card card-custom h-100">
                 <div class="card-header bg-white py-4 px-4" style="border-bottom: 1px solid #f1f3f8; ">
                     <div class="d-flex align-items-center justify-content-between">
                         <h3>Informasi Surat</h3>
-                        <div>
-                            @if($letter->status === 'unassigned')
-                                <span class="status-badge status-belum_disposisi">Unassigned</span>
-                            @elseif($letter->status === 'assigned')
-                                <span class="status-badge status-sudah_disposisi">Assigned</span>
-                            @elseif($letter->status === 'completed')
-                                <span class="status-badge status-selesai">Selesai</span>
-                            @endif
+                            <x-status-badge :status="$letter->status" />
                         </div>
                     </div>
                 </div>
@@ -90,7 +83,7 @@
 
         <!-- Status Perbarui Form -->
         <div class="col-lg-4 mb-4">
-            <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <div class="card card-custom">
                 <div class="card-header bg-white py-4 px-4" style="border-bottom: 1px solid #f1f3f8; ">
                     <h3>Perbarui Status</h3>
                 </div>
@@ -101,8 +94,7 @@
                         <div class="mb-3">
                             <label for="status" class="form-label" style="font-size: 14px; font-weight: 500; color: #4E5967;">Current Status</label>
                             <select name="status" id="status" class="form-select" style="height: 38px; border-radius: 6px;">
-                                <option value="unassigned" {{ $letter->status === 'unassigned' ? 'selected' : '' }}>Unassigned</option>
-                                <option value="assigned" {{ $letter->status === 'assigned' ? 'selected' : '' }}>Assigned</option>
+                                <option value="received" {{ $letter->status === 'received' ? 'selected' : '' }}>Diterima</option>
                                 <option value="completed" {{ $letter->status === 'completed' ? 'selected' : '' }}>Selesai</option>
                             </select>
                         </div>
@@ -113,57 +105,6 @@
         </div>
     </div>
 
-    <!-- Dispositions Section -->
-    <div class="card mt-2" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
-        <div class="card-header bg-white py-4 px-4" style="border-bottom: 1px solid #f1f3f8; ">
-            <div class="d-flex align-items-center justify-content-between">
-                <h3>Disposisi</h3>
-                <a href="{{ route('admin.dispositions.create', ['incoming_letter_id' => $letter->id]) }}" class="btn btn-primary btn-sm" style="border-radius: 6px; background-color: #066FD1; border-color: #066FD1;">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-1">
-                        <line x1="12" y1="5" x2="12" y2="19"></line>
-                        <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>Buat Disposisi
-                </a>
-            </div>
-        </div>
-        <div class="table-responsive">
-            <table class="table table-vcenter mb-0">
-                <thead style="background-color: #F8FAFC;">
-                    <tr>
-                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Assigned To</th>
-                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Instructions</th>
-                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Status</th>
-                        <th style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase;">Tanggal</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($letter->dispositions as $disposition)
-                        <tr>
-                            <td style="font-weight: 500; color: #1A2744;">{{ optional($disposition->assignedTo)->name ?? '-' }}</td>
-                            <td>{{ Str::limit($disposition->instructions, 50) }}</td>
-                            <td>
-                                @if($disposition->status === 'unread')
-                                    <span class="status-badge status-belum_dibaca">Unread</span>
-                                @elseif($disposition->status === 'read')
-                                    <span class="status-badge status-dibaca">Read</span>
-                                @elseif($disposition->status === 'completed')
-                                    <span class="status-badge status-selesai">Selesai</span>
-                                @else
-                                    <span class="status-badge status-belum_dibaca">{{ ucfirst($disposition->status) }}</span>
-                                @endif
-                            </td>
-                            <td class="text-muted">{{ $disposition->created_at->format('d M Y, H:i') }}</td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4" class="text-center py-5 text-muted">
-                                No dispositions created yet.
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
-        </div>
-    </div>
+    <!-- Removed Dispositions Section -->
 </div>
 @endsection

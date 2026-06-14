@@ -31,7 +31,7 @@
     @endif
 
     <!-- Letter Summary Card -->
-    <div class="card mb-4" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); background-color: #F8FAFC;">
+    <div class="card card-custom mb-4" style="background-color: #F8FAFC;">
         <div class="card-header py-4 px-4" style="background-color: #F8FAFC; border-bottom: 1px solid #E0E3E8;  border-radius: 12px 12px 0 0;">
             <div class="d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#066FD1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">
@@ -46,9 +46,9 @@
                 <div class="col-md-6">
                     <div class="mb-3">
                         <div class="mb-1" style="font-size: 12px; font-weight: 600; color: #6A7380; text-transform: uppercase; letter-spacing: 0.5px; ">Diajukan Oleh</div>
-                        <div style="font-size: 14px; font-weight: 500; color: #1A2744;">{{ $letter->submittedBy->name ?? '-' }}</div>
-                        @if($letter->submittedBy)
-                            <div style="font-size: 13px; color: #6A7380;">{{ $letter->submittedBy->email }}</div>
+                        <div style="font-size: 14px; font-weight: 500; color: #1A2744;">{{ $letter->createdBy->name ?? '-' }}</div>
+                        @if($letter->createdBy)
+                            <div style="font-size: 13px; color: #6A7380;">{{ $letter->createdBy->email }}</div>
                         @endif
                     </div>
                     <div class="mb-3">
@@ -96,7 +96,7 @@
     </div>
 
     <!-- Processing Form -->
-    <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+    <div class="card card-custom">
         <div class="card-header bg-white py-4 px-4" style="border-bottom: 1px solid #f1f3f8; ">
             <div class="d-flex align-items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#066FD1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="me-2">

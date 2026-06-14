@@ -57,7 +57,7 @@
         <!-- Submissions Tab -->
         <div class="tab-pane fade show active" id="submissions-pane" role="tabpanel" aria-labelledby="submissions-tab">
             <!-- Cari & Filter Bar -->
-            <div class="card mb-4 p-4\" style="border-radius: 0 12px 12px 12px;  border: 1px solid rgba(1,61,209,0.12); border-top: none; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <div class="card card-custom card-tabs mb-4 p-4">
                 <form action="{{ route('admin.outgoing-letters.index') }}" method="GET" class="row g-3 align-items-end">
                     <input type="hidden" name="tab" value="submissions">
                     <div class="col-md-4">
@@ -92,7 +92,7 @@
             </div>
 
             <!-- Data Table -->
-            <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
+            <div class="card card-custom">
                 <div class="table-responsive">
                     <table class="table table-vcenter table-nowrap mb-0">
                         <thead style="background-color: #F8FAFC;">
@@ -116,7 +116,7 @@
                             @forelse($submissionLetters as $letter)
                                 <tr>
                                     <td class="text-muted">{{ ++$subIndex }}</td>
-                                    <td style="font-weight: 500; color: #1A2744;">{{ $letter->submittedBy->name ?? '-' }}</td>
+                                    <td style="font-weight: 500; color: #1A2744;">{{ $letter->createdBy->name ?? '-' }}</td>
                                     <td>{{ Str::limit($letter->purpose, 30) }}</td>
                                     <td>{{ Str::limit($letter->addressed_to, 25) }}</td>
                                     <td>
@@ -131,22 +131,10 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($letter->status === 'draft')
-                                            <span class="status-badge status-draft">Draf</span>
-                                        @elseif($letter->status === 'pending_approval')
-                                            <span class="status-badge status-menunggu_approval">Menunggu Persetujuan</span>
-                                        @elseif($letter->status === 'rejected')
-                                            <span class="status-badge status-ditolak">Ditolak</span>
-                                        @endif
+                                        <x-status-badge :status="$letter->status" />
                                     </td>
                                     <td>
-                                        @if($letter->urgency === 'critical')
-                                            <span class="badge bg-danger">Kritis</span>
-                                        @elseif($letter->urgency === 'urgent')
-                                            <span class="badge bg-warning text-dark">Mendesak</span>
-                                        @else
-                                            <span class="badge bg-secondary">Normal</span>
-                                        @endif
+                                        <x-urgency-badge :urgency="$letter->urgency" />
                                     </td>
                                     <td class="text-muted">{{ $letter->created_at->format('d M Y') }}</td>
                                     <td>
@@ -181,7 +169,7 @@
         <!-- Archive Tab -->
         <div class="tab-pane fade" id="archive-pane" role="tabpanel" aria-labelledby="archive-tab">
             <!-- Cari & Filter Bar -->
-            <div class="card mb-4 p-4\" style="border-radius: 0 12px 12px 12px;  border: 1px solid rgba(1,61,209,0.12); border-top: none; box-shadow: 0 1px 4px rgba(0,0,0,0.06);">
+            <div class="card card-custom card-tabs mb-4 p-4">
                 <form action="{{ route('admin.outgoing-letters.index') }}" method="GET" class="row g-3 align-items-end">
                     <input type="hidden" name="tab" value="archive">
                     <div class="col-md-4">
@@ -215,7 +203,7 @@
             </div>
 
             <!-- Data Table -->
-            <div class="card" style="border-radius: 12px; border: 1px solid rgba(1,61,209,0.12); box-shadow: 0 1px 4px rgba(0,0,0,0.06); overflow: hidden;">
+            <div class="card card-custom">
                 <div class="table-responsive">
                     <table class="table table-vcenter table-nowrap mb-0">
                         <thead style="background-color: #F8FAFC;">
@@ -239,7 +227,7 @@
                             @forelse($archiveLetters as $letter)
                                 <tr>
                                     <td class="text-muted">{{ ++$arcIndex }}</td>
-                                    <td style="font-weight: 500; color: #1A2744;">{{ $letter->submittedBy->name ?? '-' }}</td>
+                                    <td style="font-weight: 500; color: #1A2744;">{{ $letter->createdBy->name ?? '-' }}</td>
                                     <td>{{ Str::limit($letter->purpose, 30) }}</td>
                                     <td>{{ Str::limit($letter->addressed_to, 25) }}</td>
                                     <td>
@@ -254,20 +242,10 @@
                                         @endif
                                     </td>
                                     <td>
-                                        @if($letter->status === 'approved')
-                                            <span class="status-badge status-disetujui">Disetujui</span>
-                                        @elseif($letter->status === 'sent')
-                                            <span class="status-badge status-terkirim">Terkirim</span>
-                                        @endif
+                                        <x-status-badge :status="$letter->status" />
                                     </td>
                                     <td>
-                                        @if($letter->urgency === 'critical')
-                                            <span class="badge bg-danger">Kritis</span>
-                                        @elseif($letter->urgency === 'urgent')
-                                            <span class="badge bg-warning text-dark">Mendesak</span>
-                                        @else
-                                            <span class="badge bg-secondary">Normal</span>
-                                        @endif
+                                        <x-urgency-badge :urgency="$letter->urgency" />
                                     </td>
                                     <td class="text-muted">{{ $letter->created_at->format('d M Y') }}</td>
                                     <td>

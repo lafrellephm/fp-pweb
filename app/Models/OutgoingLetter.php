@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use App\Traits\HasCreator;
 
 class OutgoingLetter extends Model
 {
+    use HasCreator;
     protected $table = 'outgoing_letters';
 
     protected $fillable = [
@@ -36,13 +38,6 @@ class OutgoingLetter extends Model
         ];
     }
 
-    /**
-     * User who submitted this letter draft.
-     */
-    public function submittedBy(): BelongsTo
-    {
-        return $this->belongsTo(User::class, 'created_by');
-    }
 
     /**
      * Pimpinan who approved this letter.
@@ -50,5 +45,13 @@ class OutgoingLetter extends Model
     public function approvedBy(): BelongsTo
     {
         return $this->belongsTo(User::class, 'approved_by');
+    }
+
+    /**
+     * Scope a query to sort by urgency (critical > urgent > normal).
+     */
+    public function scopeSortByUrgency($query)
+    {
+        return $query->orderByRaw("CASE urgency WHEN 'critical' THEN 1 WHEN 'urgent' THEN 2 WHEN 'normal' THEN 3 ELSE 4 END");
     }
 }
